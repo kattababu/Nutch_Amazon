@@ -37,6 +37,7 @@ public class TeleAmazonasProgCrew {
 	static PrintStream ps=null;
 	static File file=null;
 	
+	static
 	{
 		FileStore.ProgramCrewTable("programcrew");
 	}
