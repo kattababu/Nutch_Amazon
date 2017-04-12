@@ -34,6 +34,8 @@ public class TeleAmzTVshow {
 	public TeleAmzTVshow() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 	HTable ht=null;
 	Scan sc=null;
