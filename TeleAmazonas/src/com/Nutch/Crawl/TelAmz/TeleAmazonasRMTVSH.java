@@ -7,6 +7,10 @@ package com.Nutch.Crawl.TelAmz;
 
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.KeyValue;
@@ -35,6 +39,9 @@ public class TeleAmazonasRMTVSH {
 		// TODO Auto-generated constructor stub
 	}
 	
+	static FileOutputStream fos=null;
+	static PrintStream ps=null;
+	static File file=null;
 	
 	
 	HTable ht=null;
@@ -50,6 +57,13 @@ public class TeleAmazonasRMTVSH {
 	{
 		try
 		{
+			
+			fos = new FileOutputStream(FileStore.fileRM,true);
+			ps = new PrintStream(fos);
+			 System.setOut(ps);
+			
+			
+			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"teleamz_webpage");
 			sc=new Scan();
@@ -196,6 +210,8 @@ public class TeleAmazonasRMTVSH {
 			{
 				ht.close();
 				resc.close();
+				ps.close();
+				fos.close();
 				
 			}
 			catch(Exception e)

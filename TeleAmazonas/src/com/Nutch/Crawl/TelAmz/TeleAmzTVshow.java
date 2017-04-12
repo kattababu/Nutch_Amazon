@@ -4,6 +4,9 @@
 package com.Nutch.Crawl.TelAmz;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Locale;
 
 import org.apache.hadoop.conf.Configuration;
@@ -42,12 +45,24 @@ public class TeleAmzTVshow {
 	ResultScanner resc;
 	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Description=null;
 	
-	
+	static FileOutputStream fos=null;
+	static PrintStream ps=null;
+	static File file=null;
+	static
+	{
+		FileStore.TVShowTable("tvshow");
+	}
 	
 	public void TeleAShowCNT(String names)
 	{
 		try
 		{
+			fos = new FileOutputStream(FileStore.fileTvshow,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
+			
+			
+			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"teleamz_webpage");
 			sc=new Scan();
@@ -297,6 +312,8 @@ public class TeleAmzTVshow {
 			{
 				ht.close();
 				resc.close();
+				ps.close();
+				fos.close();
 				
 			}
 			catch(Exception e)

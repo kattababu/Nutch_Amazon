@@ -1,5 +1,9 @@
 package com.Nutch.Crawl.TelAmz;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.KeyValue;
@@ -28,6 +32,16 @@ public class TeleAmazonasCrew {
 	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Description=null,Splitter_Text=null;
 	
 	MSDigest msd=new MSDigest();
+	static FileOutputStream fos=null;
+	static PrintStream ps=null;
+	static File file=null;
+	
+	
+	static 
+	{
+		FileStore.CrewTable("crew");
+		
+			}
 	
 	
 	
@@ -35,6 +49,12 @@ public class TeleAmazonasCrew {
 	{
 		try
 		{
+			
+			fos = new FileOutputStream(FileStore.fileC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
+			
+			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"teleamz_webpage");
 			sc=new Scan();
@@ -78,8 +98,8 @@ public class TeleAmazonasCrew {
 							for(String crewtitle:crewtitles)
 							{
 								
-								
-								
+								if(crewtitle!=null)
+								{
 								////////////////Crew_SK//////////////////////
 								msd.MD5(crewtitle.trim());
 								
@@ -114,9 +134,6 @@ public class TeleAmazonasCrew {
 								System.out.print("#<>#");
 								
 								
-								
-								
-								
 								////////////////Crew_Blood_Group//////////////////////
 								
 								System.out.print("#<>#");
@@ -141,9 +158,6 @@ public class TeleAmazonasCrew {
 								////////////////Crew_Constellation//////////////////////
 								
 								System.out.print("#<>#");
-								
-								
-								
 								
 								////////////////Crew_Country//////////////////////
 								
@@ -223,7 +237,7 @@ public class TeleAmazonasCrew {
 								
 								
 								
-								
+								}
 								
 								
 							}
@@ -246,6 +260,8 @@ public class TeleAmazonasCrew {
 			{
 				ht.close();
 				resc.close();
+				ps.close();
+				fos.close();
 				
 			}
 			catch(Exception e)

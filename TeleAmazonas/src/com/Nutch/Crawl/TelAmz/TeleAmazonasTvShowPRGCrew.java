@@ -1,5 +1,9 @@
 package com.Nutch.Crawl.TelAmz;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.KeyValue;
@@ -31,6 +35,9 @@ public class TeleAmazonasTvShowPRGCrew {
 	int i=1;
 	MSDigest msd=new MSDigest();
 	
+	static FileOutputStream fos=null;
+	static PrintStream ps=null;
+	static File file=null;
 	
 	
 	
@@ -38,6 +45,11 @@ public class TeleAmazonasTvShowPRGCrew {
 	{
 		try
 		{
+			
+			fos = new FileOutputStream(FileStore.filePC,true);
+			ps = new PrintStream(fos);
+			 System.setOut(ps);
+			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"teleamz_webpage");
 			sc=new Scan();
@@ -154,6 +166,8 @@ public class TeleAmazonasTvShowPRGCrew {
 				{
 					ht.close();
 					resc.close();
+					ps.close();
+					fos.close();
 					
 				}
 				catch(Exception e)

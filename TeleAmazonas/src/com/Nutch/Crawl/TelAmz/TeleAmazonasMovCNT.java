@@ -1,5 +1,8 @@
 package com.Nutch.Crawl.TelAmz;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Locale;
 
 import org.apache.hadoop.conf.Configuration;
@@ -29,13 +32,31 @@ public class TeleAmazonasMovCNT {
 	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Description=null,Splitter_Text=null;
 	
 	MSDigest msd=new MSDigest();
+	static FileOutputStream fos=null;
+	static PrintStream ps=null;
+	static File file=null;
 	
+	
+	
+	static 
+	{
+				
+				FileStore.MovieTable("movie");
+		 
+
+	}
 	
 	
 	public void TeleAMovCNT(String names)
 	{
 		try
 		{
+			
+			fos = new FileOutputStream(FileStore.fileM,true);
+			ps = new PrintStream(fos);
+			 System.setOut(ps);
+			
+			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"teleamz_webpage");
 			sc=new Scan();
@@ -277,6 +298,8 @@ public class TeleAmazonasMovCNT {
 			{
 				ht.close();
 				resc.close();
+				ps.close();
+				fos.close();
 				
 			}
 			catch(Exception e)

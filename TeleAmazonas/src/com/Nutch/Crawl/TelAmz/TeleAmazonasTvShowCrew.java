@@ -1,5 +1,9 @@
 package com.Nutch.Crawl.TelAmz;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.KeyValue;
@@ -21,6 +25,10 @@ public class TeleAmazonasTvShowCrew {
 		// TODO Auto-generated constructor stub
 	}
 
+	static FileOutputStream fos=null;
+	static PrintStream ps=null;
+	static File file=null;
+	
 	
 	HTable ht=null;
 	Scan sc=null;
@@ -31,10 +39,17 @@ public class TeleAmazonasTvShowCrew {
 	
 	
 	
+	
 	public void TeleATvShowCrewCNT(String names)
 	{
 		try
 		{
+			
+			fos = new FileOutputStream(FileStore.fileC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
+			
+			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"teleamz_webpage");
 			sc=new Scan();
@@ -257,6 +272,8 @@ public class TeleAmazonasTvShowCrew {
 			{
 				ht.close();
 				resc.close();
+				ps.close();
+				fos.close();
 				
 			}
 			catch(Exception e)
