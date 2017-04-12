@@ -47,6 +47,7 @@ public class TeleAmazonasMovCNT {
 	}
 	
 	
+	
 	public void TeleAMovCNT(String names)
 	{
 		try
@@ -96,16 +97,17 @@ public class TeleAmazonasMovCNT {
 							String title=eltitle.text();
 							
 							
+							String rtitle=title.replace(",", "").trim();
 							
 							////////////////Movie_Sk/////////////////
-							msd.MD5(title.trim());
+							msd.MD5(rtitle.trim());
 							
 							System.out.print(msd.md5s+"#<>#");
 							
 							/////////////////////Movie_title/////////////////////
 							
 							
-							System.out.print(title.replace(",", "").trim());
+							System.out.print(rtitle.trim());
 							
 							System.out.print("#<>#");
 														
