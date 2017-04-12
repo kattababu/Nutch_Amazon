@@ -90,7 +90,8 @@ public class TeleAmazonasProgCrew {
 						{
 							Element eltitle=el.select("h3").first();
 							String title=eltitle.text();
-							msd.MD5(title.trim());
+							String rtitle=title.replace(",", "").trim();
+							msd.MD5(rtitle.trim());
 							String Program_sk=msd.md5s.trim();
 							int i=1;
 							
