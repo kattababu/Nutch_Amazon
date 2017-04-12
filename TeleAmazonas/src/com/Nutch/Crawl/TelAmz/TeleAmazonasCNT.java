@@ -52,7 +52,7 @@ public class TeleAmazonasCNT {
 					qualifier=Bytes.toString(kv.getQualifier());
 					
 					
-					/*
+					
 					if(rownames.contains("/entretenimiento/") &&! rownames.contains("/oie/")  && !rownames.contains("/supernick/") && !rownames.endsWith("/entretenimiento/"))
 					{
 					
@@ -153,7 +153,7 @@ public class TeleAmazonasCNT {
 					new TeleAmzOtherLinks().TeleAVDTVSHCNT(rownames);
 						}
 					}
-					*/
+					
 					
 					 if(rownames.contains("/peliculas/")&& !rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
 					{
@@ -166,10 +166,10 @@ public class TeleAmazonasCNT {
 						
 						
 					new TeleAmazonasMovCNT().TeleAMovCNT(rownames);
-						//new TeleAmazonasCrew().TeleACrewCNT(rownames);
-						//new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
+						new TeleAmazonasCrew().TeleACrewCNT(rownames);
+						new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
 						
-						//new TeleAmzRichMedia().TeleARMCNT(rownames);
+						new TeleAmzRichMedia().TeleARMCNT(rownames);
 						}
 					}
 					
