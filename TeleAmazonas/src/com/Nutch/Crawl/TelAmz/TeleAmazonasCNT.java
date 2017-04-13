@@ -187,8 +187,9 @@ public class TeleAmazonasCNT {
 						//new TeleAmazonasMovCNT().TeleAMovCNT(rownames);
 						
 					new TeleAmazonasWMCNT().TeleAWMCNT(rownames);
-					//new TeleAmazonasCrew().TeleACrewCNT(rownames);
+					//new TeleAmazonasCrew().TeleAWMCrewCNT(rownames);
 						//new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
+						//new TeleAmazonasProgCrew().TeleAWMProgCrewCNT(rownames);
 						
 						//new TeleAmzRichMedia().TeleARMCNT(rownames);
 						}
