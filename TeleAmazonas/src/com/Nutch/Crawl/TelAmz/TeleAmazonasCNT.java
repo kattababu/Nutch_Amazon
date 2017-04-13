@@ -51,7 +51,7 @@ public class TeleAmazonasCNT {
 					family=Bytes.toString(kv.getFamily());
 					qualifier=Bytes.toString(kv.getQualifier());
 					
-					
+					/*
 				
 					if(rownames.contains("/entretenimiento/") &&! rownames.contains("/oie/")  && !rownames.contains("/supernick/") && !rownames.endsWith("/entretenimiento/"))
 					{
@@ -59,15 +59,15 @@ public class TeleAmazonasCNT {
 					if(family.equals("f")&& qualifier.equals("cnt"))
 						
 						{
-						//System.out.println(rownames);	
+				//System.out.println(rownames);	
 						
 						 
 						
 						new TeleAmzTVshow().TeleAShowCNT(rownames);
 						
-						 new TeleAmazonasRMTVSH().TeleARMTVSHCNT(rownames);
+						 //new TeleAmazonasRMTVSH().TeleARMTVSHCNT(rownames);
 						
-						new TeleAmzOtherLinks().TeleAVDTVSHCNT(rownames);
+						//new TeleAmzOtherLinks().TeleAVDTVSHCNT(rownames);
 						}
 						
 					}
@@ -155,7 +155,7 @@ public class TeleAmazonasCNT {
 					}
 					
 					
-					 if(rownames.contains("/peliculas/")&& !rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
+					else if(rownames.contains("/peliculas/")&& !rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
 					{
 					
 					if(family.equals("f")&& qualifier.equals("cnt"))
@@ -166,13 +166,33 @@ public class TeleAmazonasCNT {
 						
 						
 					new TeleAmazonasMovCNT().TeleAMovCNT(rownames);
-					new TeleAmazonasCrew().TeleACrewCNT(rownames);
-						new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
+					//new TeleAmazonasCrew().TeleACrewCNT(rownames);
+						//new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
 						
-						new TeleAmzRichMedia().TeleARMCNT(rownames);
+						//new TeleAmzRichMedia().TeleARMCNT(rownames);
 						}
 					}
+					*/
 					
+					
+					if(rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
+					{
+					
+					if(family.equals("f")&& qualifier.equals("cnt"))
+						
+						{
+						System.out.println(rownames);	
+						
+						
+						//new TeleAmazonasMovCNT().TeleAMovCNT(rownames);
+						
+					new TeleAmazonasWMCNT().TeleAWMCNT(rownames);
+					//new TeleAmazonasCrew().TeleACrewCNT(rownames);
+						//new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
+						
+						//new TeleAmzRichMedia().TeleARMCNT(rownames);
+						}
+					}
 					
 					
 					

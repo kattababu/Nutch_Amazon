@@ -47,7 +47,7 @@ public class TeleAmazonasRMTVSH {
 	HTable ht=null;
 	Scan sc=null;
 	ResultScanner resc;
-	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,DimensM=null,image_type=null;
+	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,DimensM=null,image_type=null,Splitter_DM=null;
 	
 	MSDigest msd=new MSDigest();
 	
@@ -89,6 +89,8 @@ public class TeleAmazonasRMTVSH {
 						content=Bytes.toString(kv.getValue());
 						Document document = Jsoup.parse(content);
 						String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+						//String urlss=Xsoup.compile("//div[@class='wpb_wrapper']//img").evaluate(document).get();
+						//System.out.println(urlss);
 						
 						
 						Elements el=Xsoup.compile("//div[@class='wpb_wrapper']//img").evaluate(document).getElements();
@@ -96,8 +98,11 @@ public class TeleAmazonasRMTVSH {
 						for(Element xel:el)
 						{
 							String Images=Xsoup.compile("/@src").evaluate(xel).get();
+							//System.out.println(Images);
 							String width=Xsoup.compile("/@width").evaluate(xel).get();
+							//System.out.println(width);
 							String height=Xsoup.compile("/@height").evaluate(xel).get();
+							//System.out.println(height);
 							if(width!=null && height!=null)
 							{
 								String dimens=width+"x"+height;
@@ -105,6 +110,7 @@ public class TeleAmazonasRMTVSH {
 								{
 									String mfdim="1024x440".trim();
 									DimensM=mfdim;
+									width="1024";
 								}
 								else
 								{
@@ -112,10 +118,14 @@ public class TeleAmazonasRMTVSH {
 									
 									
 								}
+								//System.out.println(DimensM);
 								
 							}
+							//System.out.println(DimensM);
+							//SplitDim(DimensM);
 							
 							int w=Integer.parseInt(width);
+							//System.out.println(w);
 							
 							
 							if(w >= 1024)
@@ -306,6 +316,14 @@ public class TeleAmazonasRMTVSH {
 	{
 		String[] splits=names.split("\\/");
 		Splitter_SK=splits[splits.length-1];
+		
+	}
+	
+	public void SplitDim(String names)
+	{
+		String[] splits=names.split("\\x");
+		Splitter_DM=splits[splits.length-1];
+		System.out.println(Splitter_DM);
 		
 	}
 	

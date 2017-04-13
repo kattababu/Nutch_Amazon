@@ -38,11 +38,13 @@ public class SampleCNT {
 	static PrintStream ps=null;
 	static File file=null;
 	
+	
 	static 
 	{
 		
 		file=new File("/katta/TeleAmazonas/SampleCont.txt");
 	}
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -52,7 +54,7 @@ public class SampleCNT {
 		{
 			fos = new FileOutputStream(file,true);
 			ps = new PrintStream(fos);
-			  System.setOut(ps);
+			 System.setOut(ps);
 			
 			
 		Configuration config=HBaseConfiguration.create();
@@ -71,7 +73,7 @@ public class SampleCNT {
 				family=Bytes.toString(kv.getFamily());
 				qualifier=Bytes.toString(kv.getQualifier());
 				
-				if(rownames.equals("com.teleamazonas.www:http/programacion/entretenimiento/cake-boss/"))
+				if(rownames.equals("com.teleamazonas.www:http/programacion/peliculas/"))
 				{
 					if(family.equals("f") && qualifier.equals("cnt"))
 					{

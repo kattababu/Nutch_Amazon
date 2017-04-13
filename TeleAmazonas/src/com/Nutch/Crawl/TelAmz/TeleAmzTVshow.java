@@ -43,23 +43,28 @@ public class TeleAmzTVshow {
 	HTable ht=null;
 	Scan sc=null;
 	ResultScanner resc;
-	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Description=null;
+	String sb=null,sb2=null,concat=null;
+	
+	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Description=null,aux=null;
 	
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
+	int i=0;
+	
+	/*
 	static
 	{
 		FileStore.TVShowTable("tvshow");
 	}
-	
+	*/
 	public void TeleAShowCNT(String names)
 	{
 		try
 		{
-			fos = new FileOutputStream(FileStore.fileTvshow,true);
-			ps = new PrintStream(fos);
-			System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.fileTvshow,true);
+			//ps = new PrintStream(fos);
+			//System.setOut(ps);
 			
 			
 			
@@ -134,23 +139,40 @@ public class TeleAmzTVshow {
 						Elements els=document.select("div.wpb_text_column");
 						
 						//System.out.println(els.toString());
+						String regex="(([a-zA-Z])*):(.*)((\\d+)(:)(\\d+))(.*)";
 						
 						for(Element el:els)
 						{
+							i=1;
 							
-									Elements elsp=el.select("p").not("*[style*='text-align: center;']");
+									Elements elsp=el.select("p, h3").not("*[style*='text-align: center;']");
 									{
 										for(Element elp:elsp)
-										{
+										{ 
 											
 											 Description=elp.text();
 											 if(Description.contains("Reparto Principal:"))
 											 {
 												 elp.remove();
 											 }
+											 else if(Description.matches(regex))
+											 {
+												 	 aux=elp.text();
+													 StringConcat(aux,i++);
+													 
+													 
+													 
+												 
+												
+												 
+												 
+												 elp.remove();
+												 
+												 
+											 }
 											 else
 											 {
-												 
+												
 												 System.out.print(Description.trim());
 											 }
 										 
@@ -245,6 +267,9 @@ public class TeleAmzTVshow {
 						
 				////////////////TVShow_Aux_Info/////////////////
 						
+						 System.out.print("{\"Schedule\""+":\""+concat.trim()+"\"}");
+							
+						
 						System.out.print("#<>#");
 						
 						
@@ -330,6 +355,35 @@ public class TeleAmzTVshow {
 	{
 		String[] splits=names.split("\\/");
 		Splitter_SK=splits[splits.length-1];
+		
+	}
+	
+	public void  StringConcat(String names,int a)
+	{
+		if(true)
+		{
+		
+		if(a <= 1)
+		{
+			sb=names;
+		
+		}
+		else if(a > 1)
+		{
+			sb2=names;
+			
+		}
+		
+		}
+		
+		
+		if(sb2!=null)
+		{
+			concat=sb+" "+sb2;
+		//System.out.println(concat);
+		}
+		
+		
 		
 	}
 }

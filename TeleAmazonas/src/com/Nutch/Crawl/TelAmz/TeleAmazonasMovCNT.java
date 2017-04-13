@@ -36,7 +36,7 @@ public class TeleAmazonasMovCNT {
 	static PrintStream ps=null;
 	static File file=null;
 	
-	
+	/*
 	
 	static 
 	{
@@ -46,16 +46,16 @@ public class TeleAmazonasMovCNT {
 
 	}
 	
-	
+	*/
 	
 	public void TeleAMovCNT(String names)
 	{
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileM,true);
-			ps = new PrintStream(fos);
-			 System.setOut(ps);
+			//fos = new FileOutputStream(FileStore.fileM,true);
+			//ps = new PrintStream(fos);
+			// System.setOut(ps);
 			
 			
 			Configuration config=HBaseConfiguration.create();
@@ -86,9 +86,10 @@ public class TeleAmazonasMovCNT {
 						
 						
 						String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
-						
+						//
 						
 						Elements els=document.select("div.wpb_text_column");
+						
 						
 						
 						for(Element el:els)
@@ -119,11 +120,17 @@ public class TeleAmazonasMovCNT {
 							////////////////Movie_other_Titles/////////////////
 							Element elotitle=el.select("h6").first();
 							String othertitle=elotitle.text();
+							String dictothertitle=othertitle.replace("(", "").replace(")", "").trim();
+							//System.out.println(dictothertitle);
+							if(dictothertitle.isEmpty())
+							{
+								System.out.print("#<>#");
+							}
 							
-							System.out.print(othertitle.replace("(", "").replace(")", "").trim()+"#<>#");
-					
-							
-							
+							else
+							{
+							 System.out.print("{\"Other_title\""+":\""+dictothertitle.trim()+"\"}"+"#<>#");
+							}
 							
 							//////////////////////// Movie Description//////////////////////
 							
@@ -134,8 +141,8 @@ public class TeleAmazonasMovCNT {
 											
 											//String attr=elp.attributes().toString();
 											//System.out.println(attr);
-										 Description=elp.text();
-										 System.out.print(Description.replace("Sinopsis: ","").trim());
+										 Description=elp.text().replace("Sinopsis:","").replaceFirst("^ ", "").trim();
+										 System.out.print(Description.trim());
 										 
 										 //System.out.println("\n\n");
 											
