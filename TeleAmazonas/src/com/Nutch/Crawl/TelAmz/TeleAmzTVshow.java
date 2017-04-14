@@ -43,7 +43,7 @@ public class TeleAmzTVshow {
 	HTable ht=null;
 	Scan sc=null;
 	ResultScanner resc;
-	String sb=null,sb2=null,concat=null;
+	String sb="welcome",sb2=null,concat=null;
 	
 	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Description=null,aux=null;
 	
@@ -159,13 +159,7 @@ public class TeleAmzTVshow {
 											 {
 												 	 aux=elp.text();
 													 StringConcat(aux,i++);
-													 
-													 
-													 
-												 
-												
-												 
-												 
+													  
 												 elp.remove();
 												 
 												 
@@ -267,10 +261,16 @@ public class TeleAmzTVshow {
 						
 				////////////////TVShow_Aux_Info/////////////////
 						
-						 System.out.print("{\"Schedule\""+":\""+concat.trim()+"\"}");
+						if(aux!=null)
+						{
+						 System.out.print("{\"Schedule\""+":\""+concat.trim()+"\"}"+"#<>#");
+						}
+						else
+						{
 							
 						
 						System.out.print("#<>#");
+						}
 						
 						
 						
@@ -360,28 +360,33 @@ public class TeleAmzTVshow {
 	
 	public void  StringConcat(String names,int a)
 	{
-		if(true)
+		if(names!=null)
 		{
 		
-		if(a <= 1)
+		if(a >= 1)
 		{
-			sb=names;
-		
-		}
+			sb+=names+" ";
+			concat=sb.replaceFirst("welcome", "");
+			
+			
+			
+			
+				}
+		/*
 		else if(a > 1)
 		{
 			sb2=names;
 			
-		}
+		}*/
 		
 		}
 		
-		
+		/*
 		if(sb2!=null)
 		{
 			concat=sb+" "+sb2;
 		//System.out.println(concat);
-		}
+		}*/
 		
 		
 		
