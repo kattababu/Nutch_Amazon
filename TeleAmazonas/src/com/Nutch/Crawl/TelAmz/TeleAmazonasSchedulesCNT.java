@@ -63,7 +63,7 @@ public class TeleAmazonasSchedulesCNT {
 	
 	static 
 	{
-		FileStore.SchedulesTable("schedules");
+		FileStore.SchedulesTable("schedule");
 	}
 	
 	
