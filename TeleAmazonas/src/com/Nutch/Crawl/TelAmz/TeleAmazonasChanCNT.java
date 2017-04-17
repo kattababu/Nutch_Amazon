@@ -45,7 +45,12 @@ public class TeleAmazonasChanCNT {
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
+	static String c_sk=null;
 	
+	static 
+	{
+		FileStore.ChannelsTable("channel");
+	}
 	
 	
 	public void TeleAChanCNT(String names)
@@ -53,9 +58,9 @@ public class TeleAmazonasChanCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileM,true);
-			//ps = new PrintStream(fos);
-			// System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileChanles,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			
 			Configuration config=HBaseConfiguration.create();
@@ -93,7 +98,7 @@ public class TeleAmazonasChanCNT {
 						//System.out.println(title);
 						
 						msd.MD5(title);
-						String c_sk=msd.md5s.trim();
+						c_sk=msd.md5s.trim();
 						
 						
 						String description=Xsoup.compile("//meta[@property='og:description']/@content").evaluate(document).get();
@@ -146,9 +151,9 @@ public class TeleAmazonasChanCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileM,true);
-			//ps = new PrintStream(fos);
-			// System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileRM,true);
+			ps = new PrintStream(fos);
+			 System.setOut(ps);
 			
 			
 			Configuration config=HBaseConfiguration.create();

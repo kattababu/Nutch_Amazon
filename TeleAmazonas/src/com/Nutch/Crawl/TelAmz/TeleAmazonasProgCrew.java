@@ -38,12 +38,12 @@ public class TeleAmazonasProgCrew {
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
-	/*
+	
 	static
 	{
 		FileStore.ProgramCrewTable("programcrew");
 	}
-	*/
+	
 	
 	public void TeleAProgCrewCNT(String names)
 	{
@@ -52,9 +52,9 @@ public class TeleAmazonasProgCrew {
 			
 			
 			
-			//fos = new FileOutputStream(FileStore.filePC,true);
-			//ps = new PrintStream(fos);
-			// System.setOut(ps);
+			fos = new FileOutputStream(FileStore.filePC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"teleamz_webpage");
@@ -155,9 +155,9 @@ public class TeleAmazonasProgCrew {
 			
 			
 			
-			//fos = new FileOutputStream(FileStore.filePC,true);
-			//ps = new PrintStream(fos);
-			// System.setOut(ps);
+			fos = new FileOutputStream(FileStore.filePC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"teleamz_webpage");

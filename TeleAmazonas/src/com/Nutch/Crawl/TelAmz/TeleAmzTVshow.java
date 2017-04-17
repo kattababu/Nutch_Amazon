@@ -52,19 +52,19 @@ public class TeleAmzTVshow {
 	static File file=null;
 	int i=0;
 	
-	/*
+	
 	static
 	{
 		FileStore.TVShowTable("tvshow");
 	}
-	*/
+	
 	public void TeleAShowCNT(String names)
 	{
 		try
 		{
-			//fos = new FileOutputStream(FileStore.fileTvshow,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileTvshow,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			
 			

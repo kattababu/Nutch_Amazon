@@ -35,7 +35,7 @@ public class TeleAmazonasCrew {
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
-	/*
+
 	
 	static 
 	{
@@ -43,16 +43,16 @@ public class TeleAmazonasCrew {
 		
 			}
 	
-	*/
+
 	
 	public void TeleACrewCNT(String names)
 	{
 		try
 		{
 			
-		//	fos = new FileOutputStream(FileStore.fileC,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+		fos = new FileOutputStream(FileStore.fileC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			
 			Configuration config=HBaseConfiguration.create();
@@ -285,9 +285,9 @@ public class TeleAmazonasCrew {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileC,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileC,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			
 			Configuration config=HBaseConfiguration.create();

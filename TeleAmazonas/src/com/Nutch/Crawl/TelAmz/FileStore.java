@@ -38,6 +38,8 @@ public class FileStore {
 	static File fileTHRAVL=null;
 	static File fileRPG=null;
 	static File fileOL=null;
+	static File fileSched=null;
+	static File fileChanles=null;
 	
 	//static int count=0;
 	/*
@@ -342,6 +344,53 @@ public class FileStore {
             e.printStackTrace();
         }
     }
+//////////////////////////////////////////////// Channels Table/////////////////////////////	
+	
+	
+	public static void ChannelsTable(String table) {
+        //get current project path
+       // String filePath = ;
+        //create a new file with Time Stamp
+        fileChanles= new File(filePath + "/" + filename+table+"_"+GetCurrentTimeStamp().replace(":","").replace(".","")+".queries");
+
+        try {
+            if (!fileChanles.exists()) {
+                fileChanles.createNewFile();
+                //System.out.println("File is created; file name is " + fileMRAT.getName());
+            } else {
+              //  System.out.println("File already exist");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	
+	
+	
+//////////////////////////////////////////////// SchedulesTable/////////////////////////////	
+	
+	
+	public static void SchedulesTable(String table) {
+        //get current project path
+       // String filePath = ;
+        //create a new file with Time Stamp
+        fileSched= new File(filePath + "/" + filename+table+"_"+GetCurrentTimeStamp().replace(":","").replace(".","")+".queries");
+
+        try {
+            if (!fileSched.exists()) {
+                fileSched.createNewFile();
+                //System.out.println("File is created; file name is " + fileMRAT.getName());
+            } else {
+              //  System.out.println("File already exist");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 	
 	////////////////////////////////////////////////////////////  GET SYSTEM TIME ////////////////////////////////////////////

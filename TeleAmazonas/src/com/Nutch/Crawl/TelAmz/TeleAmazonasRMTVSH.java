@@ -323,7 +323,7 @@ public class TeleAmazonasRMTVSH {
 	{
 		String[] splits=names.split("\\x");
 		Splitter_DM=splits[splits.length-1];
-		System.out.println(Splitter_DM);
+		//System.out.println(Splitter_DM);
 		
 	}
 	

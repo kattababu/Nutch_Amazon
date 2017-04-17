@@ -55,9 +55,9 @@ public class TeleAmazonasWMCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileM,true);
-			//ps = new PrintStream(fos);
-			// System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileM,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			
 			Configuration config=HBaseConfiguration.create();

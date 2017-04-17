@@ -52,7 +52,7 @@ public class TeleAmazonasCNT {
 					qualifier=Bytes.toString(kv.getQualifier());
 					
 					
-				/*
+				
 					if(rownames.contains("/entretenimiento/") &&! rownames.contains("/oie/")  && !rownames.contains("/supernick/") && !rownames.endsWith("/entretenimiento/"))
 					{
 					
@@ -65,9 +65,9 @@ public class TeleAmazonasCNT {
 						
 						new TeleAmzTVshow().TeleAShowCNT(rownames);
 						
-						// new TeleAmazonasRMTVSH().TeleARMTVSHCNT(rownames);
+					new TeleAmazonasRMTVSH().TeleARMTVSHCNT(rownames);
 						
-						//new TeleAmzOtherLinks().TeleAVDTVSHCNT(rownames);
+					new TeleAmzOtherLinks().TeleAVDTVSHCNT(rownames);
 						}
 						
 					}
@@ -194,9 +194,9 @@ public class TeleAmazonasCNT {
 					new TeleAmzRichMedia().TeleARMCNT(rownames);
 						}
 					}
-					*/
 					
-					if(rownames.equals("com.teleamazonas.www:http/"))
+				
+					else if(rownames.equals("com.teleamazonas.www:http/"))
 					{
 						if(family.equals("f")&& qualifier.equals("cnt"))
 							
@@ -210,7 +210,20 @@ public class TeleAmazonasCNT {
 					
 			
 			
+					else if(rownames.contains("/programacion/") && rownames.endsWith("programacion-quito/")|| rownames.endsWith("programacion-guayaquil/"))
+					{
+						if(family.equals("f")&& qualifier.equals("cnt"))
+							
+						{
 					
+							new TeleAmazonasSchedulesCNT().TeleAScheduleCNT(rownames);
+							
+							new TeleAmazonasSchedulesCNT().TeleAScheduleRMCNT(rownames);
+							
+							
+						//System.out.println(rownames);
+						}
+					}
 					
 				}
 			}

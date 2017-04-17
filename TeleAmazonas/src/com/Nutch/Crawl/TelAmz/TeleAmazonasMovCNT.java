@@ -36,7 +36,7 @@ public class TeleAmazonasMovCNT {
 	static PrintStream ps=null;
 	static File file=null;
 	
-	/*
+	
 	
 	static 
 	{
@@ -46,16 +46,16 @@ public class TeleAmazonasMovCNT {
 
 	}
 	
-	*/
+	
 	
 	public void TeleAMovCNT(String names)
 	{
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileM,true);
-			//ps = new PrintStream(fos);
-			// System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileM,true);
+			ps = new PrintStream(fos);
+		System.setOut(ps);
 			
 			
 			Configuration config=HBaseConfiguration.create();
