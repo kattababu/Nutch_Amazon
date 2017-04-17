@@ -95,7 +95,11 @@ public class TeleAmazonasMovCNT {
 						for(Element el:els)
 						{
 							Element eltitle=el.select("h3").first();
+							if(eltitle!=null)
+							{
+							
 							String title=eltitle.text();
+							
 							
 							
 							String rtitle=title.replace(",", "").trim();
@@ -280,7 +284,7 @@ public class TeleAmazonasMovCNT {
 
 									
 									
-									
+							}	
 									
 									
 									
@@ -297,8 +301,8 @@ public class TeleAmazonasMovCNT {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally

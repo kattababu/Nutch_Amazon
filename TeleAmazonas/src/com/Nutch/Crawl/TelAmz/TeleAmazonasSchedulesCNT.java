@@ -118,7 +118,6 @@ public class TeleAmazonasSchedulesCNT {
 							
 							String rtitle=title.replaceAll("[,(,)]","").trim();
 							
-							//System.out.println(rtitle);
 							msd.MD5(rtitle.trim());
 							
 							//System.out.println(msd.md5s.trim());
@@ -217,8 +216,8 @@ public class TeleAmazonasSchedulesCNT {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally
@@ -423,8 +422,8 @@ public class TeleAmazonasSchedulesCNT {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally
@@ -459,7 +458,7 @@ public class TeleAmazonasSchedulesCNT {
 		
 	
 //////////////////////Schedule_Program_Type/////////////////////
-		System.out.print("tvshow"+"#<>#");
+		System.out.print("tvshow".trim()+"#<>#");
 		
 		
 //////////////////////Schedule_Start_Datetime/////////////////////
@@ -467,7 +466,10 @@ public class TeleAmazonasSchedulesCNT {
 		
 		
 //////////////////////Schedule_Durations/////////////////////
-		System.out.print(duration+"#<>#");
+		 long durations=(duration*60);
+		 int i=(int)durations;
+		
+		System.out.print(i+"#<>#");
 		
 //////////////////////Schedule_Attributes/////////////////////
 		System.out.print("#<>#");

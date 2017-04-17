@@ -92,7 +92,11 @@ public class TeleAmazonasProgCrew {
 						for(Element el:els)
 						{
 							Element eltitle=el.select("h3").first();
+							if(eltitle!=null)
+							{
+							
 							String title=eltitle.text();
+							
 							String rtitle=title.replace(",", "").trim();
 							msd.MD5(rtitle.trim());
 							String Program_sk=msd.md5s.trim();
@@ -113,6 +117,7 @@ public class TeleAmazonasProgCrew {
 								
 								
 							}
+							}
 							
 							
 						}
@@ -123,8 +128,8 @@ public class TeleAmazonasProgCrew {
 			}
 			catch(Exception e)
 			{
-				e.getMessage();
-				//e.printStackTrace();
+				//e.getMessage();
+				e.printStackTrace();
 			}
 			
 			finally
@@ -258,8 +263,8 @@ public class TeleAmazonasProgCrew {
 			}
 			catch(Exception e)
 			{
-				e.getMessage();
-				//e.printStackTrace();
+				//e.getMessage();
+				e.printStackTrace();
 			}
 			
 			finally

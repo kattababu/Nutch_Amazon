@@ -262,8 +262,8 @@ public class TeleAmazonasTvShowCrew {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally

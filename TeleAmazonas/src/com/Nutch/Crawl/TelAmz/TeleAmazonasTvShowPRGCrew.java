@@ -76,6 +76,8 @@ public class TeleAmazonasTvShowPRGCrew {
 						Document document = Jsoup.parse(content);
 						
 						String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+						if(url!=null)
+						{
 						SplitUrl(url);
 						
 						Elements els=document.select("div.wpb_text_column");
@@ -150,14 +152,15 @@ public class TeleAmazonasTvShowPRGCrew {
 						
 						*/
 						}
+						}
 					}
 				}
 			}
 			}
 			catch(Exception e)
 			{
-				e.getMessage();
-				//e.printStackTrace();
+				//e.getMessage();
+				e.printStackTrace();
 			}
 			
 			finally

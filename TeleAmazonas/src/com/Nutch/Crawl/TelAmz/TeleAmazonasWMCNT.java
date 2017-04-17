@@ -265,22 +265,6 @@ public class TeleAmazonasWMCNT {
 							
 							System.out.print("\n");
 
-							
-							
-
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							System.out.println("\n\n");
 							}
 							
 							
@@ -495,8 +479,8 @@ public class TeleAmazonasWMCNT {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally

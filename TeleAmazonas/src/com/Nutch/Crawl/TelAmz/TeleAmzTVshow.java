@@ -101,6 +101,9 @@ public class TeleAmzTVshow {
 		////////////////TVShow_Sk/////////////////
 						
 						String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+						if(url!=null)
+						{
+						//System.out.println(url);
 						
 						SplitUrl(url);
 									
@@ -315,6 +318,7 @@ public class TeleAmzTVshow {
 					
 					
 					//System.out.print("#<>#");
+						}
 					
 					
 						}
@@ -327,8 +331,8 @@ public class TeleAmzTVshow {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally

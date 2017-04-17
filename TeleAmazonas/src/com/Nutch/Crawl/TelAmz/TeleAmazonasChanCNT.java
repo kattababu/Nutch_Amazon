@@ -50,6 +50,8 @@ public class TeleAmazonasChanCNT {
 	static 
 	{
 		FileStore.ChannelsTable("channel");
+		FileStore.RichMediaTable("richmedia");
+
 	}
 	
 	
@@ -122,8 +124,8 @@ public class TeleAmazonasChanCNT {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally
@@ -213,8 +215,8 @@ public class TeleAmazonasChanCNT {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally

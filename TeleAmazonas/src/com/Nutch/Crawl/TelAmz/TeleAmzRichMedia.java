@@ -51,13 +51,13 @@ public class TeleAmzRichMedia {
 	static PrintStream ps=null;
 	static File file=null;
 	
-	
+	/*
 	static 
 	{
 		FileStore.RichMediaTable("richmedia");
 		
 			}
-	
+	*/
 	
 	public void TeleARMCNT(String names)
 	{
@@ -146,8 +146,8 @@ public class TeleAmzRichMedia {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally

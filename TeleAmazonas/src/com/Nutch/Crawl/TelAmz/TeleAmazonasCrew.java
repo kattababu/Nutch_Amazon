@@ -250,8 +250,8 @@ public class TeleAmazonasCrew {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally
@@ -356,9 +356,6 @@ public class TeleAmazonasCrew {
 								////////////////Crew_Description//////////////////////
 								
 								System.out.print("#<>#");
-								
-								
-								
 								
 								////////////////Crew_Aka//////////////////////
 								
@@ -491,8 +488,8 @@ public class TeleAmazonasCrew {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally

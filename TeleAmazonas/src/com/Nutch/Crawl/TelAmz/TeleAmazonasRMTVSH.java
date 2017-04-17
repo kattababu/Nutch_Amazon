@@ -51,6 +51,12 @@ public class TeleAmazonasRMTVSH {
 	
 	MSDigest msd=new MSDigest();
 	
+	/*
+	static 
+	{
+		FileStore.RichMediaTable("richmedia");
+	}
+	*/
 	
 	
 	public void TeleARMTVSHCNT(String names)
@@ -210,8 +216,8 @@ public class TeleAmazonasRMTVSH {
 		}
 		catch(Exception e)
 		{
-			e.getMessage();
-			//e.printStackTrace();
+			//e.getMessage();
+			e.printStackTrace();
 		}
 		
 		finally
@@ -310,6 +316,11 @@ public class TeleAmazonasRMTVSH {
 		
 		
 	}
+	
+	
+	
+	
+	
 
 	
 	public void SplitUrl(String names)
