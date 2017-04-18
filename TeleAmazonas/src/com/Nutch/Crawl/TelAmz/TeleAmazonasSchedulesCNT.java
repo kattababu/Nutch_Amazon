@@ -52,7 +52,8 @@ public class TeleAmazonasSchedulesCNT {
 	HTable ht=null;
 	Scan sc=null;
 	ResultScanner resc;
-	String rownames=null,family=null,qualifier=null,content=null;
+	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Prg_SK=null;
+
 	String results=null,resadd=null;
 	
 	MSDigest msd=new MSDigest();
@@ -61,20 +62,21 @@ public class TeleAmazonasSchedulesCNT {
 	static File file=null;
 	
 	
+	
+	
 	static 
 	{
 		FileStore.SchedulesTable("schedule");
 	}
-	
 	
 	public void TeleAScheduleCNT(String names)
 	{
 		try
 		{
 			
-			fos = new FileOutputStream(FileStore.fileSched,true);
-			ps = new PrintStream(fos);
-			System.setOut(ps);
+		fos = new FileOutputStream(FileStore.fileSched,true);
+		ps = new PrintStream(fos);
+		System.setOut(ps);
 			
 	
 			Configuration config=HBaseConfiguration.create();
@@ -108,17 +110,74 @@ public class TeleAmazonasSchedulesCNT {
 						for(Element el:els)
 						{
 							
+							
+							
+							
 							///////////// Channel_SK///////////////////////
 							//System.out.println(TeleAmazonasChanCNT.c_sk);
 							
 							String Ch_sk=TeleAmazonasChanCNT.c_sk;
 							
+							
+							
 							///////////////////////// Program_Sk//////////////////////
+							
+							//String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+							
+							
+							
+							
+							
+							String prg_url=Xsoup.compile("//a/@href").evaluate(el).get();
+							if(!prg_url.isEmpty())
+							{
+											
+							
+						if(prg_url.contains("javascript://") || prg_url.endsWith("jarabe-de-pico/") || prg_url.endsWith("en-corto/"))
+						{
 							String title=Xsoup.compile("//a/@title").evaluate(el).get();
+							//System.out.println(title);
 							
-							String rtitle=title.replaceAll("[,(,)]","").trim();
-							
+							if(title!=null)
+							{
+							String rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
 							msd.MD5(rtitle.trim());
+							Prg_SK=msd.md5s.trim();
+							}
+							
+														
+							
+						}
+						else if( prg_url.contains("/deportes/") || prg_url.contains("/noticias/") || prg_url.contains("/actualidad/") )
+						{
+							//SplitUrls(pr_url);
+							//break;
+							prg_url=null;
+							Prg_SK=prg_url;
+							
+							
+						}
+						else
+						{
+							
+							SplitUrlsSD(prg_url);
+							Prg_SK=Splitter_SK;
+							//System.out.println(Splitter_SK);
+
+						}
+						
+							
+						
+						//	System.out.println("\n\n");
+							
+
+							
+							
+							
+							
+							
+							
+							//////////////////////////////////////////
 							
 							//System.out.println(msd.md5s.trim());
 							
@@ -195,11 +254,14 @@ public class TeleAmazonasSchedulesCNT {
 					        	//System.out.println(results);
 					        }
 							
-					        
-					        SchedulesTab(Ch_sk,msd.md5s,results,Duration);
+					        if(Prg_SK!=null)
+					        {
+					        	  
+					        SchedulesTab(Ch_sk,Prg_SK,results,Duration);
+					        }
 							
-							
-							
+							}
+						
 							
 													
 						}
@@ -284,6 +346,8 @@ public class TeleAmazonasSchedulesCNT {
 						for(Element el:els)
 						{
 							
+							
+							
 							String Sc_Image=Xsoup.compile("//img/@src| //img  /@src").evaluate(el).get();
 							String mImage=null;
 							if(Sc_Image!=null)
@@ -292,7 +356,7 @@ public class TeleAmazonasSchedulesCNT {
 								
 								
 								
-								
+								/*
 								
 								//System.out.println(mImage);
 								///////////////////////// Program_Sk//////////////////////
@@ -301,13 +365,55 @@ public class TeleAmazonasSchedulesCNT {
 								String rtitle=title.replaceAll("[,(,)]","").trim();
 								
 								//System.out.println(rtitle);
+								*/
 								
+								
+								String prg_url=Xsoup.compile("//a/@href").evaluate(el).get();
+								if(!prg_url.isEmpty())
+								{
+								
+								//System.out.println(prg_url);
+							if(prg_url.contains("javascript://") || prg_url.endsWith("jarabe-de-pico/")|| prg_url.endsWith("en-corto/") )
+							{
+								String title=Xsoup.compile("//a/@title").evaluate(el).get();
+								
+								String rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+								msd.MD5(rtitle.trim());
+								Prg_SK=msd.md5s.trim();
+								
+															
+								
+							}
+							else if( prg_url.contains("/deportes/") || prg_url.contains("/noticias/") || prg_url.contains("/actualidad/") )
+							{
+								//SplitUrls(pr_url);
+								//break;
+								prg_url=null;
+								Prg_SK=prg_url;
+								
+								
+							}
+							else
+							{
+								
+								SplitUrlsSD(prg_url);
+								Prg_SK=Splitter_SK;
+								//System.out.println(Splitter_SK);
+
+							}
+							
+
 								
 								String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 								
+								if(Prg_SK!=null)
+								{
 								
-								ScheduleRMTab(mImage,rtitle,url);
 								
+								ScheduleRMTab(mImage,Prg_SK,url);
+								}
+								
+								}
 								
 							}
 							
@@ -445,6 +551,215 @@ public class TeleAmazonasSchedulesCNT {
 	
 	}
 	
+	
+	
+	
+	
+	
+	//////////////////////////////////////////////////// TVSHOW SCHEDULES///////////////////////////////////
+	
+	
+	
+	public void TeleAScheduleTvShowCNT(String names)
+	{
+		try
+		{
+			
+	fos = new FileOutputStream(FileStore.fileTvshow,true);
+		ps = new PrintStream(fos);
+			System.setOut(ps);
+			
+	
+			Configuration config=HBaseConfiguration.create();
+			ht=new HTable(config,"teleamz_webpage");
+			sc=new Scan();
+			resc=ht.getScanner(sc);
+			for(Result res = resc.next(); (res != null); res=resc.next())
+			{
+				for(KeyValue kv:res.list())
+				{
+					
+					rownames=Bytes.toString(kv.getRow());
+					family=Bytes.toString(kv.getFamily());
+					qualifier=Bytes.toString(kv.getQualifier());
+					
+					
+					
+					if(rownames.equals(names))	
+					
+					{
+						if(family.equals("f")&& qualifier.equals("cnt"))
+							
+						{
+						
+						content=Bytes.toString(kv.getValue());
+						Document document = Jsoup.parse(content);
+						
+						
+						Elements els=Xsoup.compile("//div[@class='divParrilla']//table//tbody/tr").evaluate(document).getElements();
+						
+						for(Element el:els)
+						{
+							
+							
+							
+							
+							
+							
+							///////////////////////// Program_Sk//////////////////////
+							
+							
+							
+							
+							String prg_url=Xsoup.compile("//a/@href").evaluate(el).get();
+							if(!prg_url.isEmpty())
+							{
+							
+							String rtitle=null;
+							
+							//System.out.println(prg_url);
+						if(prg_url.contains("javascript://") || prg_url.endsWith("jarabe-de-pico/") || prg_url.endsWith("en-corto/") )
+						{
+							String title=Xsoup.compile("//a/@title").evaluate(el).get();
+							
+							rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+							msd.MD5(rtitle.trim());
+							Prg_SK=msd.md5s.trim();
+							
+														
+							
+						}
+						else if( prg_url.contains("/deportes/") || prg_url.contains("/noticias/") || prg_url.contains("/actualidad/") )
+						{
+							//SplitUrls(pr_url);
+							//break;
+							prg_url=null;
+							Prg_SK=prg_url;
+							
+							
+						}
+						else
+						{
+							
+							//SplitUrlsSD(prg_url);
+							Prg_SK=null;
+							//System.out.println(Splitter_SK);
+
+						}
+						
+							
+						//	System.out.println("\n\n");
+							
+
+							
+							
+							
+							
+							
+							
+							//////////////////////////////////////////
+							
+							//System.out.println(msd.md5s.trim());
+							
+							
+							//////////////////////////Durations////////////////////////
+							
+							
+							String durs=Xsoup.compile("//td/span/text()").evaluate(el).get();
+							
+								
+							
+							String durse=Xsoup.compile("//td[2]/span/text()").evaluate(el).get();
+							
+							///////////////////////////////////////////////////////
+							
+							
+							SimpleDateFormat format = new SimpleDateFormat("hh:mm a");
+							Date date1 = format.parse(durs);
+							Date date2 = format.parse(durse);
+							long Duration=0;
+							
+							long difference = date2.getTime() - date1.getTime(); 
+							
+							int days = (int) (difference / (1000*60*60*24));  
+					        int hours = (int) ((difference - (1000*60*60*24*days)) / (1000*60*60)); 
+					        long min = (int) (difference - (1000*60*60*24*days) - (1000*60*60*hours)) / (1000*60);
+					        hours =  (hours < 0 ? -hours : hours);
+					         if(durs.contains("PM") && durse.contains("AM") && min==0)
+							{
+							
+					       Duration= (24-hours)*60+( min < 0 ? ((min-1)+60) : min);//+( sec < 0 ? -sec : sec);
+					      }
+					        else if(durs.contains("PM") && durse.contains("AM") && min!=0)
+							{
+					        	long mins=( min < 0 ? ((min-0)) : min);
+					        	long hourss=(24-hours)*60;
+							
+					       Duration= hourss+mins;
+					    	  
+							}
+					        
+					        else
+
+					        {
+					        	 Duration= hours*60+( min < 0 ? ((min-1)+60) : min);//+( sec < 0 ? -sec : sec);
+					        	
+					        }
+					        
+					         String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+								
+					      
+					        if(Prg_SK!=null)
+					        {
+					        
+					        	SchedulesTvshowTabs(Prg_SK,rtitle,Duration,url);
+					        }
+							
+							
+							}
+							
+													
+						}
+						
+						
+						
+						
+						
+						
+						}
+					}
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			//e.getMessage();
+			e.printStackTrace();
+		}
+		
+		finally
+		{
+			try
+			{
+				ht.close();
+				resc.close();
+				ps.close();
+				fos.close();
+				
+			}
+			catch(Exception e)
+			{
+				e.getMessage();
+			}
+		}
+						
+	
+	}
+
+	
+	
+	
+	
 //////////////////////////// Tabs/////////////////////////////////
 	
 	
@@ -517,9 +832,9 @@ public class TeleAmazonasSchedulesCNT {
 		
 		////////////////Program_SK//////////////////////
 		
-		msd.MD5(title.trim());
+		//msd.MD5(title.trim());
 		//SplitUrl(url);
-		System.out.print(msd.md5s.trim()+"#<>#");
+		System.out.print(title.trim()+"#<>#");
 		
 		////////////////Program_Type//////////////////////
 		
@@ -575,6 +890,13 @@ public class TeleAmazonasSchedulesCNT {
 		
 		
 	}
+	
+	public void SplitUrlsSD(String names)
+	{
+		String[] splits=names.split("\\/");
+		Splitter_SK=splits[splits.length-1];
+		
+	}
 
 	
 	
@@ -613,11 +935,185 @@ public class TeleAmazonasSchedulesCNT {
 		Locale locs=new Locale("es","SPANISH");
 		Date  formatter = new SimpleDateFormat("EEEE-dd-MM-yyyy-hh-mm-a",locs).parse(names);
 		   SimpleDateFormat formatter2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-	  results
-	  =formatter2.format(formatter);
+	  results =formatter2.format(formatter);
 	  
 	
 	}
+	
+	
+	public void SchedulesTvshowTabs(String Tv_Sk,String title,long duration,String url) throws Exception
+	{
+		///////////////////////TvShow_Sk////////////////////////////
+		
+		System.out.print(Tv_Sk.trim()+"#<>#");
+		
+		
+		
+///////////////////////TvShow_title////////////////////////////
+		
+		System.out.print(title.trim()+"#<>#");
+		
+		
+		
+///////////////////////TvShow_Original_Title////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+///////////////////////TvShow_Other_Titles////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+///////////////////////TvShow_Description////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+///////////////////////TvShow_Genres////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+///////////////////////TvShow_Sub_Genres////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+///////////////////////TvShow_Category////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+///////////////////////TvShow_Duration////////////////////////////
+		long durations=(duration*60);
+		 int i=(int)durations;
+		
+		
+		
+		System.out.print(i+"#<>#");
+		
+		
+		
+		
+///////////////////////TvShow_Lanaguages////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+		
+///////////////////////TvShow_Original_Lanaguages////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+		
+///////////////////////TvShow_MetaData_Language////////////////////////////
+		
+		System.out.print("Spanish".trim()+"#<>#");
+		
+		
+		
+///////////////////////TvShow_Aka////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+///////////////////////TvShow_Production_Country////////////////////////////
+		SplitUrlsPDC(url);
+		
+		System.out.print(Splitter_SK.substring(0, 1).toUpperCase()+Splitter_SK.substring(1).trim()+"#<>#");
+		
+		
+		
+		
+		
+///////////////////////TvShow_Aux_Info////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+		
+		
+///////////////////////TvShow_Reference_Url////////////////////////////
+		
+		System.out.print(url.trim()+"#<>#");
+		
+		
+		
+		
+		
+		
+///////////////////////TvShow_Created_At////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+		
+		
+///////////////////////TvShow_Modified_At////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+		
+		
+///////////////////////TvShow_Last_Seen////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+///////////////////////New Line////////////////////////////
+		
+		System.out.print("\n");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	public void SplitUrlsPDC(String names)
+	{
+		String[] splits=names.split("\\/");
+		String spname=splits[splits.length-1];
+		
+		
+		String[] splits1=spname.split("\\-");
+		Splitter_SK=splits1[splits1.length-1];
+		
+		
+	}
+
 	
 	
 

@@ -50,13 +50,14 @@ public class TeleAmzRichMedia {
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
-	
 	/*
+	
 	static 
 	{
 		FileStore.RichMediaTable("richmedia");
 		
 			}
+	
 	*/
 	
 	public void TeleARMCNT(String names)
@@ -117,19 +118,20 @@ public class TeleAmzRichMedia {
 									
 									String  width=Xsoup.compile("//img/@width").evaluate(xel).get();
 									String  height=Xsoup.compile("//img/@height").evaluate(xel).get();
-									
+								
 									if(width!=null && height!=null)
 									{
 										String dimens=width+"x"+height;
 										rdimens=dimens.trim();
 										//System.out.println(rtitle+"#<>#");
-										//System.out.print(rimages+"#<>#");
-										
-								//	System.out.print(rdimens+"#<>#");
+									}
+									
+									
 									RichMediaTab(rimages,rtitle,rdimens,url);
 									
 									
-									}
+									
+									
 									}
 									
 								

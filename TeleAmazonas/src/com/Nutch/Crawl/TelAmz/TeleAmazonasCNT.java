@@ -61,7 +61,6 @@ public class TeleAmazonasCNT {
 						{
 						
 						
-						
 						new TeleAmzTVshow().TeleAShowCNT(rownames);
 						
 					new TeleAmazonasRMTVSH().TeleARMTVSHCNT(rownames);
@@ -77,7 +76,7 @@ public class TeleAmazonasCNT {
 					{
 					
 					if(family.equals("f")&& qualifier.equals("cnt"))
-						
+					
 						{
 						//System.out.println(rownames);	
 						
@@ -178,6 +177,7 @@ public class TeleAmazonasCNT {
 					}
 					
 				
+					
 					else if(rownames.equals("com.teleamazonas.www:http/"))
 					{
 						if(family.equals("f")&& qualifier.equals("cnt"))
@@ -201,6 +201,8 @@ public class TeleAmazonasCNT {
 							new TeleAmazonasSchedulesCNT().TeleAScheduleCNT(rownames);
 							
 							new TeleAmazonasSchedulesCNT().TeleAScheduleRMCNT(rownames);
+							
+						new TeleAmazonasSchedulesCNT().TeleAScheduleTvShowCNT(rownames);
 							
 							
 						//System.out.println(rownames);

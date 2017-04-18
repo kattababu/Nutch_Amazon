@@ -155,7 +155,7 @@ public class TeleAmazonasChanCNT {
 			
 			fos = new FileOutputStream(FileStore.fileRM,true);
 			ps = new PrintStream(fos);
-			 System.setOut(ps);
+			System.setOut(ps);
 			
 			
 			Configuration config=HBaseConfiguration.create();
@@ -338,7 +338,7 @@ public void RichMediaTab(String image_sk,String movie_sk,String dimens,String ur
 		
 		////////////////Program_Type//////////////////////
 		
-		System.out.print("tvshow".trim()+"#<>#");
+		System.out.print("channel".trim()+"#<>#");
 		
 		////////////////Media_Type//////////////////////
 		
