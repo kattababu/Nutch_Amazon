@@ -27,7 +27,7 @@ public class TeleAmazonasMain {
 		// TODO Auto-generated method stub
 		 new TeleAmazonasCNT().TelAmzCNT();
 
-			SplitFiles.FileSplitS();
+			//SplitFiles.FileSplitS();
 
 	}
 

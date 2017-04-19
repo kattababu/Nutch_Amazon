@@ -51,7 +51,7 @@ public class TeleAmazonasCNT {
 					family=Bytes.toString(kv.getFamily());
 					qualifier=Bytes.toString(kv.getQualifier());
 					
-					
+				
 				
 					if(rownames.contains("/entretenimiento/") &&! rownames.contains("/oie/")  && !rownames.contains("/supernick/") && !rownames.endsWith("/entretenimiento/"))
 					{
@@ -203,6 +203,8 @@ public class TeleAmazonasCNT {
 							new TeleAmazonasSchedulesCNT().TeleAScheduleRMCNT(rownames);
 							
 						new TeleAmazonasSchedulesCNT().TeleAScheduleTvShowCNT(rownames);
+							new TeleAmazonasSchedulesCNT().TeleAScheduleMovieCNT(rownames);
+							
 							
 							
 						//System.out.println(rownames);
