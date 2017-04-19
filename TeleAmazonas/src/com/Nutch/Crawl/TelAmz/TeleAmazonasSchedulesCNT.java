@@ -136,6 +136,7 @@ public class TeleAmazonasSchedulesCNT {
 							{
 											
 							
+								
 						if(prg_url.contains("javascript://") || prg_url.endsWith("jarabe-de-pico/") || prg_url.endsWith("en-corto/") || prg_url.endsWith("peliculas/"))
 						{
 							if(prg_url.endsWith("peliculas/"))
@@ -146,7 +147,6 @@ public class TeleAmazonasSchedulesCNT {
 								{
 									
 								rtitle=title2.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
-								
 								
 								msd.MD5(rtitle.trim());
 								Prg_SK=msd.md5s.trim();
@@ -165,6 +165,7 @@ public class TeleAmazonasSchedulesCNT {
 							{
 								
 							rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+							
 							
 							msd.MD5(rtitle.trim());
 							Prg_SK=msd.md5s.trim();
@@ -280,17 +281,18 @@ public class TeleAmazonasSchedulesCNT {
 					        	//System.out.println(results);
 					        }
 					        
-					        if(Prg_SK!=null && !prg_url.endsWith("peliculas/") && !rtitle.isEmpty())
+					        if(Prg_SK!=null && !prg_url.endsWith("peliculas/") && !rtitle.isEmpty() && Duration!=0)
 							{
 							
-								program_type="tvshow";
 								
+					        	program_type="tvshow";
 								SchedulesTab(Ch_sk,Prg_SK,program_type,results,Duration);
 							
 							}
-							else if(Prg_SK!=null && prg_url.endsWith("peliculas/")&& !rtitle.isEmpty())
+							else if(Prg_SK!=null && prg_url.endsWith("peliculas/")&& !rtitle.isEmpty() && Duration!=0)
 							{
 								program_type="movie";
+								
 								
 								SchedulesTab(Ch_sk,Prg_SK,program_type,results,Duration);
 								
@@ -977,7 +979,7 @@ public class TeleAmazonasSchedulesCNT {
 					        {
 					        
 					        	//System.out.println(Duration);
-					        	SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url);
+					        	SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url,prg_url);
 					        }
 							
 							
@@ -1356,6 +1358,148 @@ public class TeleAmazonasSchedulesCNT {
 	
 	///////////////////////////////////////////////////////////////
 	
+	
+	public void SchedulesTvshowMovieTabs(String Tv_Sk,String title,long duration,String url,String prg_url) throws Exception
+	{
+		///////////////////////TvShow_Sk////////////////////////////
+		
+		System.out.print(Tv_Sk.trim()+"#<>#");
+		
+		
+		
+///////////////////////TvShow_title////////////////////////////
+		
+		System.out.print(title.trim()+"#<>#");
+		
+		
+		
+///////////////////////TvShow_Original_Title////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+///////////////////////TvShow_Other_Titles////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+///////////////////////TvShow_Description////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+///////////////////////TvShow_Genres////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+///////////////////////TvShow_Sub_Genres////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+///////////////////////TvShow_Category////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+///////////////////////TvShow_Duration////////////////////////////
+		
+			
+		long durations=(duration*60);
+		 int i=(int)durations;
+		
+		
+		
+		System.out.print(i+"#<>#");
+		
+		
+		
+		
+///////////////////////TvShow_Lanaguages////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+		
+///////////////////////TvShow_Original_Lanaguages////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+		
+///////////////////////TvShow_MetaData_Language////////////////////////////
+		
+		System.out.print("Spanish".trim()+"#<>#");
+		
+		
+		
+///////////////////////TvShow_Aka////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+///////////////////////TvShow_Production_Country////////////////////////////
+		SplitUrlsPDC(url);
+		
+		System.out.print(Splitter_SK.substring(0, 1).toUpperCase()+Splitter_SK.substring(1).trim()+"#<>#");
+		
+		
+		
+		
+		
+///////////////////////TvShow_Aux_Info////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+		
+		
+///////////////////////TvShow_Reference_Url////////////////////////////
+		
+		System.out.print(prg_url.trim()+"#<>#");
+		
+		
+		
+		
+		
+		
+///////////////////////TvShow_Created_At////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+		
+		
+///////////////////////TvShow_Modified_At////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+		
+		
+		
+///////////////////////TvShow_Last_Seen////////////////////////////
+		
+		System.out.print("#<>#");
+		
+		
+///////////////////////New Line////////////////////////////
+		
+		System.out.print("\n");
+		
+		
+	}
+	
+
 	
 	
 	
