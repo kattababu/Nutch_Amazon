@@ -60,9 +60,9 @@ public class TeleAmazonasChanCNT {
 		try
 		{
 			
-			//fos = new FileOutputStream(FileStore.fileChanles,true);
-			//ps = new PrintStream(fos);
-			//System.setOut(ps);
+			fos = new FileOutputStream(FileStore.fileChanles,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
 			
 			
 			Configuration config=HBaseConfiguration.create();
