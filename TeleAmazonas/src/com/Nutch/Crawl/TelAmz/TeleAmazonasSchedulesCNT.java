@@ -714,7 +714,7 @@ public class TeleAmazonasSchedulesCNT {
 					        	}
 					        	else
 					        	{
-					        		SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,prg_url);
+					        		SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url,prg_url);
 					        	}
 					        }
 							
