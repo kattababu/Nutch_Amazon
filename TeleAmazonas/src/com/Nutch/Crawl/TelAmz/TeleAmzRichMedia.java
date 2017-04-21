@@ -53,12 +53,13 @@ public class TeleAmzRichMedia {
 	static File file=null;
 	int i=0;
 	
-	
+	/*
 	static 
 	{
-		FileStore.RichMediaTable("richmedia");
+		/////////////////////FileStore.RichMediaTable("richmedia");
 		
 			}
+			*/
 	
 	
 	

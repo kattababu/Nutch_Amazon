@@ -157,20 +157,7 @@ public class TeleAmazonasCNT {
 					
 					
 					
-					else if(rownames.contains("/programacion/")&& !rownames.endsWith("actualidad/") && rownames.contains("/actualidad/"))
-					{
 					
-					if(family.equals("f")&& qualifier.equals("cnt"))
-						
-						{
-					//System.out.println(rownames);	
-						
-						
-						new TeleAmzTVshow().TeleAShowCNT(rownames);
-					new TeleAmazonasRMTVSH().TeleARMTVSHUPCNT(rownames);
-					new TeleAmzOtherLinks().TeleAVDTVSHCNT(rownames);
-						}
-					}
 				
 					 else if((rownames.contains("/deportes/")&& !rownames.endsWith("deportes/"))||(rownames.contains("/noticias/")) && !rownames.endsWith("noticias/"))
 						{
@@ -190,6 +177,21 @@ public class TeleAmazonasCNT {
 				
 				
 					
+					 else if(rownames.contains("/programacion/")&& !rownames.endsWith("actualidad/") && rownames.contains("/actualidad/"))
+						{
+						
+						if(family.equals("f")&& qualifier.equals("cnt"))
+							
+							{
+						//System.out.println(rownames);	
+							
+							
+							new TeleAmzTVshow().TeleAShowCNT(rownames);
+						new TeleAmazonasRMTVSH().TeleARMTVSHUPCNT(rownames);
+						new TeleAmzOtherLinks().TeleAVDTVSHCNT(rownames);
+							}
+						}
+			
 					
 					
 					else if(rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
@@ -212,10 +214,14 @@ public class TeleAmazonasCNT {
 						}
 					}
 					
+					
+					
+		
 			
 					
-					 else	if(rownames.equals("com.teleamazonas.www:http/"))
-					{
+					else if(rownames.equals("com.teleamazonas.www:http/"))
+					
+					 {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 							
 						{
@@ -226,19 +232,20 @@ public class TeleAmazonasCNT {
 						}
 					}
 					
-			
-			
+					 
 					else if(rownames.contains("/programacion/") && rownames.endsWith("programacion-quito/")|| rownames.endsWith("programacion-guayaquil/"))
 					{
 						if(family.equals("f")&& qualifier.equals("cnt"))
 							
 						{
+							
+							System.out.println(rownames);
 					
 							new TeleAmazonasSchedulesCNT().TeleAScheduleCNT(rownames);
 							
 							new TeleAmazonasSchedulesCNT().TeleAScheduleRMCNT(rownames);
 							
-						new TeleAmazonasSchedulesCNT().TeleAScheduleTvShowCNT(rownames);
+							new TeleAmazonasSchedulesCNT().TeleAScheduleTvShowCNT(rownames);
 							new TeleAmazonasSchedulesCNT().TeleAScheduleMovieCNT(rownames);
 							
 							
