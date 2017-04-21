@@ -51,6 +51,9 @@ public class TeleAmazonasCNT {
 					family=Bytes.toString(kv.getFamily());
 					qualifier=Bytes.toString(kv.getQualifier());
 					
+					
+							
+					
 				
 				
 					if(rownames.contains("/entretenimiento/") &&! rownames.contains("/oie/")  && !rownames.contains("/supernick/") && !rownames.endsWith("/entretenimiento/"))
@@ -154,6 +157,39 @@ public class TeleAmazonasCNT {
 					
 					
 					
+					else if(rownames.contains("/programacion/")&& !rownames.endsWith("actualidad/") && rownames.contains("/actualidad/"))
+					{
+					
+					if(family.equals("f")&& qualifier.equals("cnt"))
+						
+						{
+					//System.out.println(rownames);	
+						
+						
+						new TeleAmzTVshow().TeleAShowCNT(rownames);
+					new TeleAmazonasRMTVSH().TeleARMTVSHUPCNT(rownames);
+					new TeleAmzOtherLinks().TeleAVDTVSHCNT(rownames);
+						}
+					}
+				
+					 else if((rownames.contains("/deportes/")&& !rownames.endsWith("deportes/"))||(rownames.contains("/noticias/")) && !rownames.endsWith("noticias/"))
+						{
+						
+						if(family.equals("f")&& qualifier.equals("cnt"))
+							
+							{
+						//System.out.println(rownames);	
+							
+							
+							
+						new TeleAmzTVshow().TeleAShowCNT(rownames);
+						new TeleAmazonasRMTVSH().TeleARMTVSHUPCNT(rownames);
+							}
+						}
+						
+				
+				
+					
 					
 					
 					else if(rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
@@ -163,22 +199,22 @@ public class TeleAmazonasCNT {
 						
 						{
 					
-						
-						
+											
 						new TeleAmazonasMovCNT().TeleAMovCNT(rownames);
 						
 					new TeleAmazonasWMCNT().TeleAWMCNT(rownames);
 					new TeleAmazonasCrew().TeleAWMCrewCNT(rownames);
 						new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
 						new TeleAmazonasProgCrew().TeleAWMProgCrewCNT(rownames);
+						new TeleAmzRichMedia().TeleARMCNT(rownames);
 						
-					new TeleAmzRichMedia().TeleARMCNT(rownames);
+						
 						}
 					}
 					
-				
+			
 					
-					else if(rownames.equals("com.teleamazonas.www:http/"))
+					 else	if(rownames.equals("com.teleamazonas.www:http/"))
 					{
 						if(family.equals("f")&& qualifier.equals("cnt"))
 							

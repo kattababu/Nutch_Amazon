@@ -46,6 +46,8 @@ public class TeleAmzOtherLinks {
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
+	
+	
 	static
 	{
 		FileStore.OtherLinksTable("otherlinks");

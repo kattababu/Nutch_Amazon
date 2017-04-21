@@ -8,6 +8,7 @@ package com.Nutch.Crawl.TelAmz;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -50,7 +51,8 @@ public class TeleAmzRichMedia {
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
-	/*
+	int i=0;
+	
 	
 	static 
 	{
@@ -58,7 +60,7 @@ public class TeleAmzRichMedia {
 		
 			}
 	
-	*/
+	
 	
 	public void TeleARMCNT(String names)
 	{
@@ -70,6 +72,7 @@ public class TeleAmzRichMedia {
 			ps = new PrintStream(fos);
 			 System.setOut(ps);
 			
+			//System.out.println(names);
 			Configuration config=HBaseConfiguration.create();
 			ht=new HTable(config,"teleamz_webpage");
 			sc=new Scan();
@@ -91,60 +94,60 @@ public class TeleAmzRichMedia {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 							
 						{
+							//System.out.println(names);
 						
 						content=Bytes.toString(kv.getValue());
 						Document document = Jsoup.parse(content);
 						String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
 						
-						Elements el=Xsoup.compile("//div[@class='vc_row wpb_row vc_row-fluid']").evaluate(document).getElements();
+						Elements el=Xsoup.compile("//div[@class='vc_row wpb_row vc_row-fluid']//div[@class='wpb_wrapper']").evaluate(document).getElements();
 						
 						for(Element xel:el)
 						{
-						
-						//System.out.println(xel.toString());
-							
 								
-								String title=Xsoup.compile("//div[@class='wpb_wrapper']/h3/strong/text()|//div[@class='wpb_wrapper']/h3/text()").evaluate(xel).get();
-								if(title!=null)
+							String images=Xsoup.compile("//figure[@class='wpb_wrapper vc_figure']//img/@src").evaluate(xel).get();
+							if(images!=null)
+							{
+								//System.out.println(images);	
+								rimages=images;
+								
+								String  width=Xsoup.compile("//figure[@class='wpb_wrapper vc_figure']//img/@width").evaluate(xel).get();
+								String  height=Xsoup.compile("//figure[@class='wpb_wrapper vc_figure']//img/@height").evaluate(xel).get();
+								
+								if(width!=null && height!=null)
 								{
+								String dimens=width+"x"+height;
+								rdimens=dimens.trim();
+								//System.out.println(rdimens);
+								}
 								
-									rtitle=title.replace(",", "").trim();
 									
-									String  images=Xsoup.compile("//img/@src").evaluate(xel).get();
-									
-									if(images!=null)
-									{
-									rimages=images.trim();
-									
-									String  width=Xsoup.compile("//img/@width").evaluate(xel).get();
-									String  height=Xsoup.compile("//img/@height").evaluate(xel).get();
+								Elements elt=xel.parents().select("h3").eq(i++);
 								
-									if(width!=null && height!=null)
-									{
-										String dimens=width+"x"+height;
-										rdimens=dimens.trim();
-										//System.out.println(rtitle+"#<>#");
-									}
-									
-									
-									RichMediaTab(rimages,rtitle,rdimens,url);
-									
-									
-									
-									
-									}
-									
+								String titles=elt.text();
+								if(titles!=null)
+								{ rtitle=titles.replace(",", "").trim();
+								//System.out.println(rtitle);
+								//System.out.println(images);
 								
 								}
 								
-						}
-						
+									RichMediaTab(rimages,rtitle,rdimens,url);
+							
+							}
 							
 						
-												}
+					
+						}
+									
+							}
+							}
+								
+						}
+												
 					}
-				}
-			}
+				
+			
 		}
 		catch(Exception e)
 		{
@@ -171,8 +174,9 @@ public class TeleAmzRichMedia {
 	
 	}
 			
+	////////////////////////////////////////////////////////////////////
 	
-			
+	
 	
 	
 	

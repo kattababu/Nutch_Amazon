@@ -58,6 +58,7 @@ public class TeleAmzTVshow {
 		FileStore.TVShowTable("tvshow");
 	}
 	
+	
 	public void TeleAShowCNT(String names)
 	{
 		try
@@ -233,7 +234,7 @@ public class TeleAmzTVshow {
 						
 				////////////////TVShow_Metadata_language/////////////////
 						
-						LanguageIdentifier identifier = new LanguageIdentifier(Description);
+						LanguageIdentifier identifier = new LanguageIdentifier(titlename);
 						String lang=identifier.getLanguage();
 						Locale loc =new Locale(lang);
 						String namevalue=loc.getISO3Language();
