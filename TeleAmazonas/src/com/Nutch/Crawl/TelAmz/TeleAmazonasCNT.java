@@ -52,7 +52,7 @@ public class TeleAmazonasCNT {
 					qualifier=Bytes.toString(kv.getQualifier());
 					
 					
-							
+				
 					
 				
 				
@@ -159,7 +159,7 @@ public class TeleAmazonasCNT {
 					
 					
 				
-					 else if((rownames.contains("/deportes/")&& !rownames.endsWith("deportes/"))||(rownames.contains("/noticias/")) && !rownames.endsWith("noticias/"))
+					else if((rownames.contains("/deportes/")&& !rownames.endsWith("deportes/"))||(rownames.contains("/noticias/")) && !rownames.endsWith("noticias/"))
 						{
 						
 						if(family.equals("f")&& qualifier.equals("cnt"))
@@ -192,9 +192,9 @@ public class TeleAmazonasCNT {
 							}
 						}
 			
+				
 					
-					
-					else if(rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
+					if(rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
 					{
 					
 					if(family.equals("f")&& qualifier.equals("cnt"))
@@ -216,7 +216,7 @@ public class TeleAmazonasCNT {
 					
 					
 					
-		
+	
 			
 					
 					else if(rownames.equals("com.teleamazonas.www:http/"))
@@ -239,7 +239,7 @@ public class TeleAmazonasCNT {
 							
 						{
 							
-							System.out.println(rownames);
+							//System.out.println(rownames);
 					
 							new TeleAmazonasSchedulesCNT().TeleAScheduleCNT(rownames);
 							
