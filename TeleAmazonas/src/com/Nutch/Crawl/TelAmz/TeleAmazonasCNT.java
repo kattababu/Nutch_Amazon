@@ -177,7 +177,7 @@ public class TeleAmazonasCNT {
 				
 				
 					
-					 else if(rownames.contains("/programacion/")&& !rownames.endsWith("actualidad/") && rownames.contains("/actualidad/"))
+					else if(rownames.contains("/programacion/")&& !rownames.endsWith("actualidad/") && rownames.contains("/actualidad/"))
 						{
 						
 						if(family.equals("f")&& qualifier.equals("cnt"))
@@ -186,7 +186,7 @@ public class TeleAmazonasCNT {
 						//System.out.println(rownames);	
 							
 							
-							new TeleAmzTVshow().TeleAShowCNT(rownames);
+						new TeleAmzTVshow().TeleAShowCNT(rownames);
 						new TeleAmazonasRMTVSH().TeleARMTVSHUPCNT(rownames);
 						new TeleAmzOtherLinks().TeleAVDTVSHCNT(rownames);
 							}
@@ -194,7 +194,7 @@ public class TeleAmazonasCNT {
 			
 				
 					
-					if(rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
+					 else if(rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
 					{
 					
 					if(family.equals("f")&& qualifier.equals("cnt"))
@@ -202,11 +202,11 @@ public class TeleAmazonasCNT {
 						{
 					
 											
-						new TeleAmazonasMovCNT().TeleAMovCNT(rownames);
+						//new TeleAmazonasMovCNT().TeleAMovCNT(rownames);
 						
 					new TeleAmazonasWMCNT().TeleAWMCNT(rownames);
 					new TeleAmazonasCrew().TeleAWMCrewCNT(rownames);
-						new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
+						//new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
 						new TeleAmazonasProgCrew().TeleAWMProgCrewCNT(rownames);
 						new TeleAmzRichMedia().TeleARMCNT(rownames);
 						
@@ -219,16 +219,28 @@ public class TeleAmazonasCNT {
 	
 			
 					
-					else if(rownames.equals("com.teleamazonas.www:http/"))
+					else if(rownames.equals("com.teleamazonas.www:http/")||rownames.equals("com.teleamazonas.www:http/hora25ec/"))
 					
 					 {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 							
 						{
-					new TeleAmazonasChanCNT().TeleAChanCNT(rownames);
-					new TeleAmazonasChanCNT().TeleAChanRMCNT(rownames);
+							
+							//System.out.println(rownames);
+							if(rownames.equals("com.teleamazonas.www:http/hora25ec/"))
+							{
+							new TeleAmazonasChanCNT().TeleAChanTVSHOWCNT(rownames);
+							}
+							
+							else
+							{
+								new TeleAmazonasChanCNT().TeleAChanCNT(rownames);
+								new TeleAmazonasChanCNT().TeleAChanRMCNT(rownames);
+								
+								
+							}
 					
-						//System.out.println(rownames);
+					
 						}
 					}
 					
@@ -254,7 +266,32 @@ public class TeleAmazonasCNT {
 						}
 					}
 					
+					/////////////////
 					
+					
+					/*
+					else if((rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/")) ||(rownames.contains("/programacion/") && rownames.endsWith("programacion-quito/")|| rownames.endsWith("programacion-guayaquil/")))
+					{
+						if(family.equals("f")&& qualifier.equals("cnt"))
+							
+						{
+							
+							//System.out.println(rownames);
+							if(rownames.contains("/peliculas/"))
+									{
+							new TeleAmazonasSchedulesCNT().TeleAMovieCNT(rownames);
+									}
+							else
+							{
+					
+							new TeleAmazonasSchedulesCNT().TeleAScheduleMovieCNT(rownames);
+							
+							}
+							
+						//System.out.println(rownames);
+						}
+					}
+					*/
 					/////////////////////
 					
 				}

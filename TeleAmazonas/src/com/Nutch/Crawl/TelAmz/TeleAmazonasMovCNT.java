@@ -236,7 +236,7 @@ public class TeleAmazonasMovCNT {
 									
 									
 									SplitCountry(country);
-									System.out.print(Splitter_Text.trim());
+									System.out.print(Splitter_Text.replace(" y ", "<>").trim());
 									
 									
 									System.out.print("#<>#");

@@ -53,7 +53,7 @@ public class TeleAmzRichMedia {
 	static File file=null;
 	int i=0;
 	
-	
+	/*
 	static 
 	{
 		FileStore.RichMediaTable("richmedia");
@@ -61,7 +61,7 @@ public class TeleAmzRichMedia {
 			}
 			
 	
-	
+	*/
 	
 	public void TeleARMCNT(String names)
 	{

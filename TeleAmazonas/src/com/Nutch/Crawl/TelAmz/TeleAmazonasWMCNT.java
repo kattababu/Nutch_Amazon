@@ -38,6 +38,16 @@ public class TeleAmazonasWMCNT {
 	static PrintStream ps=null;
 	static File file=null;
 	
+	static 
+	{
+				
+				FileStore.MovieTable("movie");
+		 
+
+	}
+	
+
+	
 	/*
 	
 	static 

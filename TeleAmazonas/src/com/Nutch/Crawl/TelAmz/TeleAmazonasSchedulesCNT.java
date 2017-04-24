@@ -7,8 +7,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 //import java.util.TimeZone;
 //import java.util.concurrent.TimeUnit;
 
@@ -52,7 +55,7 @@ public class TeleAmazonasSchedulesCNT {
 	HTable ht=null;
 	Scan sc=null;
 	ResultScanner resc;
-	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Prg_SK=null,program_type=null,rtitle=null;
+	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Prg_SK=null,program_type=null,rtitle=null,rtitlemd=null;
 
 	String results=null,resadd=null;
 	
@@ -61,6 +64,15 @@ public class TeleAmazonasSchedulesCNT {
 	static PrintStream ps=null;
 	static File file=null;
 	long Duration=0;
+	static String rmtitle=null;
+	static ArrayList<String> al=new ArrayList<String>();
+	static String[] myArray=new String[1000];
+	
+	static ArrayList<String> al2=new ArrayList<String>();
+	static String[] myArray2=new String[1000];
+	
+	String[] splitsspace=null;
+	
 	
 	
 	
@@ -70,6 +82,7 @@ public class TeleAmazonasSchedulesCNT {
 	{
 		FileStore.SchedulesTable("schedule");
 	}
+	
 	
 	
 	public void TeleAScheduleCNT(String names)
@@ -770,7 +783,7 @@ public class TeleAmazonasSchedulesCNT {
 			
 	fos = new FileOutputStream(FileStore.fileM,true);
 		ps = new PrintStream(fos);
-			System.setOut(ps);
+		System.setOut(ps);
 			
 	
 			Configuration config=HBaseConfiguration.create();
@@ -799,6 +812,9 @@ public class TeleAmazonasSchedulesCNT {
 						Document document = Jsoup.parse(content);
 						
 						
+						
+												
+						
 						Elements els=Xsoup.compile("//div[@class='divParrilla']//table//tbody/tr").evaluate(document).getElements();
 						
 						for(Element el:els)
@@ -822,18 +838,35 @@ public class TeleAmazonasSchedulesCNT {
 							//System.out.println(prg_url);
 						if(prg_url.contains("javascript://") || prg_url.endsWith("peliculas/"))
 						{
+							
+							//System.out.println("The Urls:"+prg_url);
+							
+							
 							String title2=Xsoup.compile("//a//span/text()").evaluate(el).get();
 							
 							if(title2!=null)
 							{
 								
+								//
+								
 							rtitle=title2.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
 							
 							
-							msd.MD5(rtitle.trim());
-							Prg_SK=msd.md5s.trim();
-							}
 							
+							//System.out.println("Welcome to SCHEDule Movies:"+rtitle);
+								msd.MD5(rtitle.trim());
+								Prg_SK=msd.md5s.trim();
+								
+
+								
+							
+							
+							
+							
+							//
+							//System.out.println("Remaing"+rtitle);
+							
+							}
 														
 							
 						}
@@ -894,9 +927,18 @@ public class TeleAmazonasSchedulesCNT {
 					      
 					        if(Prg_SK!=null  && prg_url.endsWith("peliculas/")&& !rtitle.isEmpty())
 					        {
-					        
-					        	//System.out.println(Duration);
+					        	
 					        	SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url,prg_url);
+					        
+					        	/////////////////////////////////////////////////////// Modification Code///////////////////////////////
+					        	//SchedulesTitle(rtitle);
+					        	//System.out.println(rtitlemd);
+					        	/*
+					        	if(rtitlemd!=null && !rtitlemd.equals(rtitle))
+					        	{
+					        	SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url,prg_url);
+					        	}
+					        	*/
 					        }
 							
 							
@@ -908,8 +950,6 @@ public class TeleAmazonasSchedulesCNT {
 						
 						
 						
-						
-						
 						}
 					}
 				}
@@ -917,8 +957,8 @@ public class TeleAmazonasSchedulesCNT {
 		}
 		catch(Exception e)
 		{
-			//e.getMessage();
-			e.printStackTrace();
+			e.getMessage();
+			//e.printStackTrace();
 		}
 		
 		finally
@@ -942,7 +982,120 @@ public class TeleAmazonasSchedulesCNT {
 
 
 	
+	//////////////////////////////////////////
 	
+	
+	
+	
+	
+	public void TeleAMovieCNT(String names)
+	{
+		try
+		{
+			
+	//fos = new FileOutputStream(FileStore.fileM,true);
+		//ps = new PrintStream(fos);
+			//System.setOut(ps);
+			
+	
+			Configuration config=HBaseConfiguration.create();
+			ht=new HTable(config,"teleamz_webpage");
+			sc=new Scan();
+			resc=ht.getScanner(sc);
+			for(Result res = resc.next(); (res != null); res=resc.next())
+			{
+				for(KeyValue kv:res.list())
+				{
+					
+					rownames=Bytes.toString(kv.getRow());
+					family=Bytes.toString(kv.getFamily());
+					qualifier=Bytes.toString(kv.getQualifier());
+					
+					
+					
+					if(rownames.equals(names))	
+					
+					{
+						if(family.equals("f")&& qualifier.equals("cnt"))
+							
+						{
+						
+						content=Bytes.toString(kv.getValue());
+						Document document = Jsoup.parse(content);
+						
+						
+						Elements elsm=document.select("div.wpb_text_column");
+						
+						
+						
+						for(Element elm:elsm)
+						{
+							Element eltitlem=elm.select("h3").first();
+							if(eltitlem!=null)
+							{
+							
+							String titlem=eltitlem.text();
+							
+							
+							
+							rmtitle=titlem.replaceAll("[,/]", "").replace("-", " ").replace("Í", "I").trim();
+							
+							
+						//System.out.println("Welcome Movie Names:"+rmtitle);
+						
+							al.add(rmtitle);
+						
+							myArray= al.toArray(new String[0]);	
+						//String regex=rmtitle;
+
+							}
+						}
+						
+						
+										
+												
+						
+						
+						
+						}
+					}
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			//e.getMessage();
+			e.printStackTrace();
+		}
+		
+		finally
+		{
+			try
+			{
+				
+				
+				
+				
+				
+				
+				
+				ht.close();
+				resc.close();
+				ps.close();
+				fos.close();
+				
+			}
+			catch(Exception e)
+			{
+				e.getMessage();
+			}
+		}
+						
+	
+	}
+
+
+
 	
 //////////////////////////// Tabs/////////////////////////////////
 	
@@ -1433,6 +1586,40 @@ public class TeleAmazonasSchedulesCNT {
 	}
 
 	
+	public void SplitUrlsSpaces(String names)
+	{
+		splitsspace=names.split("\\s+");
+		//String spname=splits[splits.length-1];
+		
+		
+		
+		
+	}
+
+	public void SchedulesTitle(String names)
+	{
+	
+	for(String namesm:myArray)
+	{
+		 String regex=namesm;
+		
+		 //System.out.println( "Welcome to Movies"+regex);
+		 Pattern pattern = Pattern.compile("^"+regex);
+		 Matcher matcher = pattern.matcher(names);
+		 if(matcher.find()){
+			  
+			 
+			// System.out.println(matcher.group());
+			rtitlemd=names;
+			//System.out.println(rtitlemd);
+			 
+			}
+		  
+		 
+		 
+		
+	}
+	}
 	
 
 }

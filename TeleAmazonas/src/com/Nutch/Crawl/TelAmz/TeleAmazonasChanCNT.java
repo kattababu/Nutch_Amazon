@@ -39,7 +39,7 @@ public class TeleAmazonasChanCNT {
 	HTable ht=null;
 	Scan sc=null;
 	ResultScanner resc;
-	String rownames=null,family=null,qualifier=null,content=null;
+	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Splitter_Title=null;
 	
 	MSDigest msd=new MSDigest();
 	static FileOutputStream fos=null;
@@ -51,6 +51,8 @@ public class TeleAmazonasChanCNT {
 	{
 		FileStore.ChannelsTable("channel");
 		FileStore.RichMediaTable("richmedia");
+		FileStore.TVShowTable("tvshow");
+		
 
 	}
 	
@@ -238,11 +240,107 @@ public class TeleAmazonasChanCNT {
 	
 	}
 	
+	/////////////////////////////////////////////  TVSHOW DETAILS/////////////////////////////////
+	
+	
+	public void TeleAChanTVSHOWCNT(String names)
+	{
+		try
+		{
+			
+			fos = new FileOutputStream(FileStore.fileTvshow,true);
+			ps = new PrintStream(fos);
+			System.setOut(ps);
+			
+			Configuration config=HBaseConfiguration.create();
+			ht=new HTable(config,"teleamz_webpage");
+			sc=new Scan();
+			resc=ht.getScanner(sc);
+			for(Result res = resc.next(); (res != null); res=resc.next())
+			{
+				for(KeyValue kv:res.list())
+				{
+					
+					rownames=Bytes.toString(kv.getRow());
+					family=Bytes.toString(kv.getFamily());
+					qualifier=Bytes.toString(kv.getQualifier());
+					
+					
+					
+					if(rownames.equals(names))	
+					
+					{
+						if(family.equals("f")&& qualifier.equals("cnt"))
+							
+						{
+						
+						content=Bytes.toString(kv.getValue());
+						Document document = Jsoup.parse(content);
+						
+						
+						
+						String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+						//System.out.println(url);
+						SplitUrl(url);
+						
+						String title=Xsoup.compile("//meta[@property='og:title']/@content").evaluate(document).get();
+						//System.out.println(title);
+						SplitTitle(title);
+						
+						
+						SchedulesTvshowMovieTabs(Splitter_SK,Splitter_Title,url);
+						
+						//ChannelTab(c_sk,title,description,image,url);
+						
+						}
+					}
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			//e.getMessage();
+			e.printStackTrace();
+		}
+		
+		finally
+		{
+			try
+			{
+				ht.close();
+				resc.close();
+				ps.close();
+				fos.close();
+				
+			}
+			catch(Exception e)
+			{
+				e.getMessage();
+			}
+		}
+						
+	
+	}
 	
 	
 	
 	
 	
+	
+	public void SplitUrl(String names)
+	{
+		String[] splits=names.split("\\/");
+		Splitter_SK=splits[splits.length-1];
+		
+	}
+	
+	
+	public void SplitTitle(String names)
+	{
+		String[] splits=names.split("\\-");
+		Splitter_Title=splits[splits.length-3];
+		
+	}
 	
 	
 						
@@ -390,6 +488,153 @@ public void RichMediaTab(String image_sk,String movie_sk,String dimens,String ur
 		
 		
 	}
+
+
+
+
+
+/////////////////////////////////////
+
+
+public void SchedulesTvshowMovieTabs(String Tv_Sk,String title,String url) throws Exception
+{
+	///////////////////////TvShow_Sk////////////////////////////
+	
+	System.out.print(Tv_Sk.trim()+"#<>#");
+	
+	
+	
+///////////////////////TvShow_title////////////////////////////
+	
+	System.out.print(title.trim()+"#<>#");
+	
+	
+	
+///////////////////////TvShow_Original_Title////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+///////////////////////TvShow_Other_Titles////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+	
+///////////////////////TvShow_Description////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+///////////////////////TvShow_Genres////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+///////////////////////TvShow_Sub_Genres////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+	
+///////////////////////TvShow_Category////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+	
+///////////////////////TvShow_Duration////////////////////////////
+	
+	
+	
+	
+	System.out.print("#<>#");
+	
+	
+	
+	
+///////////////////////TvShow_Lanaguages////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+	
+	
+///////////////////////TvShow_Original_Lanaguages////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+	
+	
+///////////////////////TvShow_MetaData_Language////////////////////////////
+	
+	System.out.print("Spanish".trim()+"#<>#");
+	
+	
+	
+///////////////////////TvShow_Aka////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+	
+///////////////////////TvShow_Production_Country////////////////////////////
+	//SplitUrlsPDC(url);
+	
+	System.out.print("#<>#");
+	
+	
+	
+	
+	
+///////////////////////TvShow_Aux_Info////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+	
+	
+	
+///////////////////////TvShow_Reference_Url////////////////////////////
+	
+	System.out.print(url.trim()+"#<>#");
+	
+	
+	
+	
+	
+	
+///////////////////////TvShow_Created_At////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+	
+	
+	
+///////////////////////TvShow_Modified_At////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+	
+	
+	
+///////////////////////TvShow_Last_Seen////////////////////////////
+	
+	System.out.print("#<>#");
+	
+	
+///////////////////////New Line////////////////////////////
+	
+	System.out.print("\n");
+	
+	
+}
+
+
+
 
 
 }

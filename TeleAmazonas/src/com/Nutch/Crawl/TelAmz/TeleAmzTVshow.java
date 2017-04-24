@@ -52,12 +52,12 @@ public class TeleAmzTVshow {
 	static File file=null;
 	int i=0;
 	
-	
+	/*
 	static
 	{
 		FileStore.TVShowTable("tvshow");
 	}
-	
+	*/
 	
 	public void TeleAShowCNT(String names)
 	{
