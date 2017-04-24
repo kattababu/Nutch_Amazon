@@ -37,7 +37,7 @@ public class TeleAmazonasWMCNT {
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
-	
+	/*
 	static 
 	{
 				
@@ -46,7 +46,7 @@ public class TeleAmazonasWMCNT {
 
 	}
 	
-
+*/
 	
 	/*
 	
