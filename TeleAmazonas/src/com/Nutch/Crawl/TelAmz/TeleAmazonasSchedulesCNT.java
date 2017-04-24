@@ -781,9 +781,9 @@ public class TeleAmazonasSchedulesCNT {
 		try
 		{
 			
-	fos = new FileOutputStream(FileStore.fileM,true);
-		ps = new PrintStream(fos);
-		System.setOut(ps);
+	//fos = new FileOutputStream(FileStore.fileM,true);
+	//	ps = new PrintStream(fos);
+		//System.setOut(ps);
 			
 	
 			Configuration config=HBaseConfiguration.create();
@@ -850,7 +850,6 @@ public class TeleAmazonasSchedulesCNT {
 								//
 								
 							rtitle=title2.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
-							
 							
 							
 							//System.out.println("Welcome to SCHEDule Movies:"+rtitle);
@@ -928,17 +927,17 @@ public class TeleAmazonasSchedulesCNT {
 					        if(Prg_SK!=null  && prg_url.endsWith("peliculas/")&& !rtitle.isEmpty())
 					        {
 					        	
-					        	SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url,prg_url);
+					        	//SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url,prg_url);
 					        
 					        	/////////////////////////////////////////////////////// Modification Code///////////////////////////////
-					        	//SchedulesTitle(rtitle);
+					        	SchedulesTitle(rtitle);
 					        	//System.out.println(rtitlemd);
-					        	/*
+					        	
 					        	if(rtitlemd!=null && !rtitlemd.equals(rtitle))
 					        	{
 					        	SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url,prg_url);
 					        	}
-					        	*/
+					        	
 					        }
 							
 							
@@ -1038,9 +1037,9 @@ public class TeleAmazonasSchedulesCNT {
 							
 							
 							
-							rmtitle=titlem.replaceAll("[,/]", "").replace("-", " ").replace("Í", "I").trim();
+							//rmtitle=titlem.replaceAll("[,/]", "").replace("-", " ").replace("Í", "I").trim();
 							
-							
+							rmtitle=titlem.replaceAll("[,/]", "").trim();
 						//System.out.println("Welcome Movie Names:"+rmtitle);
 						
 							al.add(rmtitle);
@@ -1601,6 +1600,8 @@ public class TeleAmazonasSchedulesCNT {
 	
 	for(String namesm:myArray)
 	{
+		
+		 /*
 		 String regex=namesm;
 		
 		 //System.out.println( "Welcome to Movies"+regex);
@@ -1615,7 +1616,15 @@ public class TeleAmazonasSchedulesCNT {
 			 
 			}
 		  
-		 
+		 */
+		
+		System.out.println(names);
+	if(namesm.equals(names))
+	{
+		rtitlemd=names;
+	}
+	
+	
 		 
 		
 	}
