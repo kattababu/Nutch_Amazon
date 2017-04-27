@@ -10,8 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+//import java.util.regex.Matcher;
+//import java.util.regex.Pattern;
 //import java.util.TimeZone;
 //import java.util.concurrent.TimeUnit;
 
@@ -55,7 +55,7 @@ public class TeleAmazonasSchedulesCNT {
 	HTable ht=null;
 	Scan sc=null;
 	ResultScanner resc;
-	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Prg_SK=null,program_type=null,rtitle=null,rtitlemd=null;
+	String rownames=null,family=null,qualifier=null,content=null,Splitter_SK=null,Prg_SK=null,program_type=null,rtitle=null,rtitlemd=null,rtitlemd5=null;
 
 	String results=null,resadd=null;
 	
@@ -71,7 +71,7 @@ public class TeleAmazonasSchedulesCNT {
 	static ArrayList<String> al2=new ArrayList<String>();
 	static String[] myArray2=new String[1000];
 	
-	String[] splitsspace=null;
+//	/String[] splitsspace=null;
 	
 	
 	
@@ -128,7 +128,6 @@ public class TeleAmazonasSchedulesCNT {
 							
 							
 							
-							
 							///////////// Channel_SK///////////////////////
 							//System.out.println(TeleAmazonasChanCNT.c_sk);
 							
@@ -151,6 +150,10 @@ public class TeleAmazonasSchedulesCNT {
 											
 								String title=Xsoup.compile("//a/@title").evaluate(el).get();
 								
+								
+								
+								
+								
 						if(prg_url.contains("javascript://") || prg_url.endsWith("jarabe-de-pico/") || prg_url.endsWith("en-corto/") || prg_url.endsWith("peliculas/"))
 						{
 							if(prg_url.endsWith("peliculas/"))
@@ -160,14 +163,18 @@ public class TeleAmazonasSchedulesCNT {
 								if(title2!=null)
 								{
 									
-								rtitle=title2.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+								rtitle=title2.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").replace("LUNES", "").replace("MARTES", "").replace("MIÉRCOLES", "").replace("JUEVES", "").replace("VIERNES", "").replace("SÁBADO", "").replace("DOMINGO", "").replace(";", "").trim();
 								
+								 
 								msd.MD5(rtitle.trim());
 								Prg_SK=msd.md5s.trim();
 								}
 								
 								
 									}
+							
+							
+							
 							else
 							{
 							
@@ -178,7 +185,7 @@ public class TeleAmazonasSchedulesCNT {
 							if(title!=null)
 							{
 								
-							rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+							rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").replace("LUNES", "").replace("MARTES", "").replace("MIÉRCOLES", "").replace("JUEVES", "").replace("VIERNES", "").replace("SÁBADO", "").replace("DOMINGO", "").trim();
 							
 							
 							msd.MD5(rtitle.trim());
@@ -197,7 +204,7 @@ public class TeleAmazonasSchedulesCNT {
 							if(title!=null)
 							{
 								
-							rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+							rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").replace("LUNES", "").replace("MARTES", "").replace("MIÉRCOLES", "").replace("JUEVES", "").replace("VIERNES", "").replace("SÁBADO", "").replace("DOMINGO", "").trim();
 							
 							
 							msd.MD5(rtitle.trim());
@@ -274,11 +281,9 @@ public class TeleAmazonasSchedulesCNT {
 					        }
 					        
 					        
-					      //  System.out.println(Duration);
 					           ///////////////////////////////////////////////// StartDateTime////////////////////
 							
 					        String startdate=Xsoup.compile("/@id").evaluate(el).get();
-					      // System.out.println(startdate);
 					        
 					        if(!startdate.contains("2017"))
 					        {
@@ -445,7 +450,7 @@ public class TeleAmazonasSchedulesCNT {
 											if(title2!=null)
 											{
 												
-											rtitle=title2.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+											rtitle=title2.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").replace("LUNES", "").replace("MARTES", "").replace("MIÉRCOLES", "").replace("JUEVES", "").replace("VIERNES", "").replace("SÁBADO", "").replace("DOMINGO", "").replace(";", "").trim();
 											
 											
 											msd.MD5(rtitle.trim());
@@ -463,7 +468,7 @@ public class TeleAmazonasSchedulesCNT {
 										if(title!=null)
 										{
 											
-										rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+										rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").replace("LUNES", "").replace("MARTES", "").replace("MIÉRCOLES", "").replace("JUEVES", "").replace("VIERNES", "").replace("SÁBADO", "").replace("DOMINGO", "").trim();
 										
 										msd.MD5(rtitle.trim());
 										Prg_SK=msd.md5s.trim();
@@ -480,7 +485,7 @@ public class TeleAmazonasSchedulesCNT {
 										if(title!=null)
 										{
 											
-										rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+										rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").replace("LUNES", "").replace("MARTES", "").replace("MIÉRCOLES", "").replace("JUEVES", "").replace("VIERNES", "").replace("SÁBADO", "").replace("DOMINGO", "").trim();
 										
 										msd.MD5(rtitle.trim());
 										Prg_SK=msd.md5s.trim();
@@ -627,7 +632,7 @@ public class TeleAmazonasSchedulesCNT {
 						{
 							
 							
-							rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+							rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").replace("LUNES", "").replace("MARTES", "").replace("MIÉRCOLES", "").replace("JUEVES", "").replace("VIERNES", "").replace("SÁBADO", "").replace("DOMINGO", "").trim();
 							msd.MD5(rtitle.trim());
 							Prg_SK=msd.md5s.trim();
 							
@@ -640,7 +645,7 @@ public class TeleAmazonasSchedulesCNT {
 							//break;
 							//String title=Xsoup.compile("//a/@title").evaluate(el).get();
 							
-							rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+							rtitle=title.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").replace("LUNES", "").replace("MARTES", "").replace("MIÉRCOLES", "").replace("JUEVES", "").replace("VIERNES", "").replace("SÁBADO", "").replace("DOMINGO", "").trim();
 							msd.MD5(rtitle.trim());
 							Prg_SK=msd.md5s.trim();
 							
@@ -723,11 +728,11 @@ public class TeleAmazonasSchedulesCNT {
 					        	if(prg_url.contains("javascript://"))
 					        	{
 					        
-					        	SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url);
+					        	SchedulesTvshowMovieTabs(Prg_SK,rtitle,url);
 					        	}
 					        	else
 					        	{
-					        		SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url,prg_url);
+					        		SchedulesTvshowMovieTabs(Prg_SK,rtitle,url,prg_url);
 					        	}
 					        }
 							
@@ -781,9 +786,10 @@ public class TeleAmazonasSchedulesCNT {
 		try
 		{
 			
-	//fos = new FileOutputStream(FileStore.fileM,true);
-	//	ps = new PrintStream(fos);
-		//System.setOut(ps);
+			//String regex=null;
+	fos = new FileOutputStream(FileStore.fileM,true);
+	ps = new PrintStream(fos);
+	System.setOut(ps);
 			
 	
 			Configuration config=HBaseConfiguration.create();
@@ -848,11 +854,16 @@ public class TeleAmazonasSchedulesCNT {
 							{
 								
 								//
+
 								
-							rtitle=title2.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").trim();
+								
+							rtitle=title2.replaceAll("\\(.*\\)","").replace("GYE", "").replace(",", "").replace("LUNES", "").replace("MARTES", "").replace("MIÉRCOLES", "").replace("JUEVES", "").replace("VIERNES", "").replace("SÁBADO", "").replace("DOMINGO", "").replace(";", "").trim();
 							
 							
 							//System.out.println("Welcome to SCHEDule Movies:"+rtitle);
+							
+							SchedulesTitle(rtitle);
+							
 								msd.MD5(rtitle.trim());
 								Prg_SK=msd.md5s.trim();
 								
@@ -927,17 +938,21 @@ public class TeleAmazonasSchedulesCNT {
 					        if(Prg_SK!=null  && prg_url.endsWith("peliculas/")&& !rtitle.isEmpty())
 					        {
 					        	
+					        	
+					        	
+					        	//System.out.println(rtitlemd);
+					        	
 					        	//SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url,prg_url);
 					        
 					        	/////////////////////////////////////////////////////// Modification Code///////////////////////////////
-					        	SchedulesTitle(rtitle);
-					        	//System.out.println(rtitlemd);
 					        	
-					        	if(rtitlemd!=null && !rtitlemd.equals(rtitle))
+					        	if(!rtitlemd5.equals(rtitlemd))
 					        	{
-					        	SchedulesTvshowMovieTabs(Prg_SK,rtitle,Duration,url,prg_url);
+					        	SchedulesTvshowMovieTabs(Prg_SK,rtitle,url,prg_url);
 					        	}
 					        	
+					        	
+					      	
 					        }
 							
 							
@@ -1285,7 +1300,7 @@ public class TeleAmazonasSchedulesCNT {
 	
 	
 	
-	public void SchedulesTvshowMovieTabs(String Tv_Sk,String title,long duration,String url) throws Exception
+	public void SchedulesTvshowMovieTabs(String Tv_Sk,String title,String url) throws Exception
 	{
 		///////////////////////TvShow_Sk////////////////////////////
 		
@@ -1335,12 +1350,10 @@ public class TeleAmazonasSchedulesCNT {
 ///////////////////////TvShow_Duration////////////////////////////
 		
 			
-		long durations=(duration*60);
-		 int i=(int)durations;
 		
 		
 		
-		System.out.print(i+"#<>#");
+		System.out.print("#<>#");
 		
 		
 		
@@ -1428,7 +1441,7 @@ public class TeleAmazonasSchedulesCNT {
 	///////////////////////////////////////////////////////////////
 	
 	
-	public void SchedulesTvshowMovieTabs(String Tv_Sk,String title,long duration,String url,String prg_url) throws Exception
+	public void SchedulesTvshowMovieTabs(String Tv_Sk,String title,String url,String prg_url) throws Exception
 	{
 		///////////////////////TvShow_Sk////////////////////////////
 		
@@ -1478,12 +1491,10 @@ public class TeleAmazonasSchedulesCNT {
 ///////////////////////TvShow_Duration////////////////////////////
 		
 			
-		long durations=(duration*60);
-		 int i=(int)durations;
 		
 		
 		
-		System.out.print(i+"#<>#");
+		System.out.print("#<>#");
 		
 		
 		
@@ -1585,49 +1596,59 @@ public class TeleAmazonasSchedulesCNT {
 	}
 
 	
-	public void SplitUrlsSpaces(String names)
-	{
-		splitsspace=names.split("\\s+");
-		//String spname=splits[splits.length-1];
-		
-		
-		
-		
-	}
+	
 
 	public void SchedulesTitle(String names)
 	{
+		//String regex=null;
 	
 	for(String namesm:myArray)
 	{
 		
-		 /*
-		 String regex=namesm;
+		 
+		//regex=namesm;
 		
-		 //System.out.println( "Welcome to Movies"+regex);
-		 Pattern pattern = Pattern.compile("^"+regex);
-		 Matcher matcher = pattern.matcher(names);
+		 
+		 /*
+		 Pattern pattern = Pattern.compile(names);
+		 Matcher matcher = pattern.matcher(regex);
 		 if(matcher.find()){
 			  
 			 
-			// System.out.println(matcher.group());
-			rtitlemd=names;
+		
+			rtitlemd=matcher.group();
 			//System.out.println(rtitlemd);
 			 
 			}
-		  
-		 */
-		
-		System.out.println(names);
-	if(namesm.equals(names))
-	{
-		rtitlemd=names;
-	}
-	
-	
+		  */
 		 
+		 
+		   if(names.matches(namesm))
+		 {
+			   //System.out.println("Welcome to India"+namesm);
+			   //System.out.println("Welcome to Hyderabad"+names);
+			   
+			 rtitlemd=names;
+			 
+			 //System.out.println(rtitlemd);
+			// System.exit(0);
+		 }
 		
+		   else
+		   {
+				   //System.out.println("Welcome to India"+namesm);
+				   //System.out.println("Welcome to Hyderabad"+names);
+				   
+				 rtitlemd5=names;
+				 
+				 //System.out.println(rtitlemd);
+				// System.exit(0);
+			 }
+			
+				
 	}
+	
+	//System.out.println(regex);
 	}
 	
 

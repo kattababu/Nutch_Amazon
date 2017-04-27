@@ -73,7 +73,7 @@ public class SampleCNT {
 				family=Bytes.toString(kv.getFamily());
 				qualifier=Bytes.toString(kv.getQualifier());
 				
-				if(rownames.equals("com.teleamazonas.www:http/programacion/peliculas/"))
+				if(rownames.equals("com.teleamazonas.www:http/programacion/programacion-guayaquil/"))
 				{
 					if(family.equals("f") && qualifier.equals("cnt"))
 					{

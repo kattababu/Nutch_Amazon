@@ -35,6 +35,7 @@ public class TeleAmazonasMovCNT {
 	static FileOutputStream fos=null;
 	static PrintStream ps=null;
 	static File file=null;
+	static String rtitle=null;
 	
 	
 	
@@ -102,7 +103,7 @@ public class TeleAmazonasMovCNT {
 							
 							
 							
-							String rtitle=title.replace(",", "").trim();
+							rtitle=title.replace(",", "").trim();
 							
 							////////////////Movie_Sk/////////////////
 							msd.MD5(rtitle.trim());

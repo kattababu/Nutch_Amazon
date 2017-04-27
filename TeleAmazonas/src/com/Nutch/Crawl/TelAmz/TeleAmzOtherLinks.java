@@ -90,6 +90,8 @@ public class TeleAmzOtherLinks {
 						content=Bytes.toString(kv.getValue());
 						Document document = Jsoup.parse(content);
 						String url=Xsoup.compile("//meta[@property='og:url']/@content").evaluate(document).get();
+						String upd_url=Xsoup.compile("//div[@class='wpb_animate_when_almost_visible wpb_top-to-bottom top-to-bottom wpb_column vc_column_container vc_col-sm-6']//div[@class='wpb_wrapper']//a/@href").evaluate(document).get();
+						
 						
 						
 						Elements el=Xsoup.compile("//div[@class='wpb_wrapper']//iframe").evaluate(document).getElements();
@@ -100,10 +102,23 @@ public class TeleAmzOtherLinks {
 							String videos=Xsoup.compile("/@src").evaluate(xel).get();
 							
 							//System.out.println(videos);
+							if(rownames.endsWith("estrenos-en-teleamazonas/"))
+							{
+								OtherLTab(videos,upd_url);
+							}
+							else
+							{
+								OtherLTab(videos,url);
+							}
 							
 							
-							OtherLTab(videos,url);
 						}
+						
+						
+						//System.out.println(upd_url);
+						
+						
+						
 						}
 					}
 				}

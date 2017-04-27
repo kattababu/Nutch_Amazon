@@ -92,8 +92,7 @@ public class TeleAmazonasCrew {
 						{
 							Element eltitle=el.select("h5").last();
 							String title=eltitle.text();
-							SplitText(title);
-							
+							SplitText(title.replaceAll("\\(.*\\)",""));
 							String[] crewtitles=Splitter_Text.split("\\, ");
 							for(String crewtitle:crewtitles)
 							{
@@ -331,7 +330,8 @@ public class TeleAmazonasCrew {
 							//System.out.println(title);
 						
 							
-							SplitText(title);
+							SplitText(title.replaceAll("\\(.*\\)",""));
+							
 							
 							String[] crewtitles=Splitter_Text.split("\\, ");
 							for(String crewtitle:crewtitles)

@@ -105,7 +105,7 @@ public class TeleAmazonasProgCrew {
 							
 							Element elCrew=el.select("h5").last();
 							String Crew=elCrew.text();
-							SplitText(Crew);
+							SplitText(Crew.replaceAll("\\(.*\\)",""));
 							
 							String[] crewtitles=Splitter_Text.split("\\, ");
 							for(String crewtitle:crewtitles)
@@ -217,7 +217,8 @@ public class TeleAmazonasProgCrew {
 							{
 								String Crew=el2.text();
 								
-								SplitText(Crew);
+								SplitText(Crew.replaceAll("\\(.*\\)",""));
+								
 								
 								String[] crewtitles=Splitter_Text.split("\\, ");
 								for(String crewtitle:crewtitles)

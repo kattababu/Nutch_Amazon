@@ -51,10 +51,10 @@ public class TeleAmazonasCNT {
 					family=Bytes.toString(kv.getFamily());
 					qualifier=Bytes.toString(kv.getQualifier());
 					
-					/*
-				
 					
 				
+					
+			
 				
 					if(rownames.contains("/entretenimiento/") &&! rownames.contains("/oie/")  && !rownames.contains("/supernick/") && !rownames.endsWith("/entretenimiento/"))
 					{
@@ -192,36 +192,25 @@ public class TeleAmazonasCNT {
 							}
 						}
 			
-			
+					 
 					
-					else  if(rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
+					else if(rownames.endsWith("estrenos-en-teleamazonas/"))
 					{
 					
 					if(family.equals("f")&& qualifier.equals("cnt"))
 						
 						{
-					
-						//System.out.println(rownames);
-											
-						new TeleAmazonasMovCNT().TeleAMovCNT(rownames);
-						
-					new TeleAmazonasWMCNT().TeleAWMCNT(rownames);
-					new TeleAmazonasCrew().TeleAWMCrewCNT(rownames);
-						new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
-						new TeleAmazonasProgCrew().TeleAWMProgCrewCNT(rownames);
-						new TeleAmzRichMedia().TeleARMCNT(rownames);
+					//System.out.println(rownames);	
 						
 						
+					new TeleAmzOtherLinks().TeleAVDTVSHCNT(rownames);
 						}
 					}
 					
 					
 					
-	
-			
-					
 					else if(rownames.equals("com.teleamazonas.www:http/")||rownames.equals("com.teleamazonas.www:http/hora25ec/"))
-					
+						
 					 {
 						if(family.equals("f")&& qualifier.equals("cnt"))
 							
@@ -245,6 +234,39 @@ public class TeleAmazonasCNT {
 						}
 					}
 					
+		
+			
+					
+					else if(rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/"))
+					{
+					
+					if(family.equals("f")&& qualifier.equals("cnt"))
+						
+						{
+					
+						//System.out.println(rownames);
+											
+						new TeleAmazonasMovCNT().TeleAMovCNT(rownames);
+						
+					new TeleAmazonasWMCNT().TeleAWMCNT(rownames);
+					new TeleAmazonasCrew().TeleAWMCrewCNT(rownames);
+						new TeleAmazonasProgCrew().TeleAProgCrewCNT(rownames);
+						new TeleAmazonasProgCrew().TeleAWMProgCrewCNT(rownames);
+						new TeleAmzRichMedia().TeleARMCNT(rownames);
+						
+						
+						}
+					}
+					
+					
+					
+					
+					
+		
+	
+			
+					
+					
 					 
 					else if(rownames.contains("/programacion/") && rownames.endsWith("programacion-quito/")|| rownames.endsWith("programacion-guayaquil/"))
 					{
@@ -253,12 +275,13 @@ public class TeleAmazonasCNT {
 						{
 							
 							//System.out.println(rownames);
-					
+							
 							new TeleAmazonasSchedulesCNT().TeleAScheduleCNT(rownames);
 							
 							new TeleAmazonasSchedulesCNT().TeleAScheduleRMCNT(rownames);
 							
 							new TeleAmazonasSchedulesCNT().TeleAScheduleTvShowCNT(rownames);
+								
 							
 							//new TeleAmazonasSchedulesCNT().TeleAScheduleMovieCNT(rownames);
 							
@@ -271,9 +294,13 @@ public class TeleAmazonasCNT {
 					
 					/////////////////
 					
-					*/
+					///////////////////////////////////// Separate Data for MOVIE Schedules///////////////////////
 					
-					 if((rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/")) ||(rownames.contains("/programacion/") && rownames.endsWith("programacion-quito/")|| rownames.endsWith("programacion-guayaquil/")))
+					
+					
+					
+					if((rownames.contains("/peliculas/")&& rownames.endsWith("/peliculas/") && !rownames.contains("/entretenimiento/")) ||(rownames.contains("/programacion/") && rownames.endsWith("programacion-quito/")|| rownames.endsWith("programacion-guayaquil/")))
+					
 					{
 						if(family.equals("f")&& qualifier.equals("cnt"))
 							
@@ -295,7 +322,11 @@ public class TeleAmazonasCNT {
 						}
 					}
 					
-					/////////////////////
+					
+					
+								/////////////////////
+					
+					 
 					
 				}
 			}

@@ -91,16 +91,21 @@ public class TeleAmazonasTvShowPRGCrew {
 										{
 											
 											 Description=elp.text();
-											 if(Description.contains("Reparto Principal:"))
+											 if(Description.contains("Reparto Principal:")||Description.contains("Elenco:"))
 											 {
 												 String splittext=elp.toString().replace("<br>", ",").replaceAll("<strong>", "").replaceAll("</strong>", "").replace("<p style='text-align: justify;'>", "").replace("</p>", "");
 												 
 												SplitText(splittext);
-												String modifiedsplit=Splitter_Text.replaceFirst(",", "").trim();
+												//String modifiedsplit=Splitter_Text.replaceFirst(",", "").trim();
 												//System.out.println(modifiedsplit);
-												String[] comasplit=modifiedsplit.split("\\,");
+												String[] comasplit=Splitter_Text.split("\\,");
 												for(String crewtitle:comasplit)
 												{
+													
+													if(crewtitle.endsWith("."))
+													{
+														crewtitle=crewtitle.substring(0,crewtitle.length()-1);
+													}
 														msd.MD5(crewtitle.trim());
 													
 														ProgCrewTab(Splitter_SK,msd.md5s,i);
@@ -247,7 +252,7 @@ public class TeleAmazonasTvShowPRGCrew {
 	
 	public void SplitText(String names)
 	{
-		String[] splits=names.split("\\:");
+		String[] splits=names.split("\\:,|\\:");
 		Splitter_Text=splits[splits.length-1];
 		
 	}

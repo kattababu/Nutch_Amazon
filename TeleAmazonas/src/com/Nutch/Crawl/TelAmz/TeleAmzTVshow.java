@@ -155,7 +155,7 @@ public class TeleAmzTVshow {
 										{ 
 											
 											 Description=elp.text();
-											 if(Description.contains("Reparto Principal:"))
+											 if(Description.contains("Reparto Principal:")||Description.contains("Elenco:"))
 											 {
 												 elp.remove();
 											 }
