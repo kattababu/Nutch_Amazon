@@ -63,7 +63,7 @@ public class SplitFiles {
 	final static String hostname="176.9.181.50";
 	final static String username="root";
 	final static String password="hdrn^nutch";
-	final static String destination="/katta/TeleAmazonas/";
+	final static String destination="/katta/SplitTeleAmazonas/";
 	
 	public static void FileSplitS() {
 		// TODO Auto-generated method stub
