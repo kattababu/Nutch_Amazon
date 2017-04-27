@@ -51,19 +51,22 @@ public class SplitFiles {
 	final static String destination="/home/interns/sath_GenFramework/juicer/spiders/OUTPUT/processing/";
 	
 	*/
-	/*
+	
 	final static String hostname="office.headrun.com";
 	final static String username="hrb";
 	final static String password="satishdhawan16!";
 	final static String destination="/Users/hrb/MVP_PROD_NUTCH/";
 	
-	*/
+	
 	///// Prd Machine...
 	
+	/*
 	final static String hostname="176.9.181.50";
 	final static String username="root";
 	final static String password="hdrn^nutch";
 	final static String destination="/katta/SplitTeleAmazonas/";
+	
+	*/
 	
 	public static void FileSplitS() {
 		// TODO Auto-generated method stub
